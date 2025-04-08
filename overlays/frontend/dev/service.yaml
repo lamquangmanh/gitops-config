@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-dev
+  name: guestbook-ui
 spec:
   ports:
     - port: 80
       targetPort: 80
   selector:
-    app: frontend-dev
+    app: guestbook-ui
