@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-dev
+  labels:
+    app: frontend-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-dev
+  template:
+    metadata:
+      labels:
+        app: frontend-dev
+    spec:
+      containers:
+        - name: frontend-dev
+          # This will be overridden in the overlays
+          image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+          ports:
+            - containerPort: 80
