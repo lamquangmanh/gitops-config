@@ -2,6 +2,10 @@ resources:
   - ../../../base # Use the base resources
   - account.yaml
 
+commonLabels:
+  app.kubernetes.io/environment: dev
+  app.kubernetes.io/component: frontend
+
 images:
   - name: frontend-dev
     # Dev-specific tag
