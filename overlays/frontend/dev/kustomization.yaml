@@ -1,0 +1,11 @@
+resources:
+  - ../../../base # Use the base resources
+  - account.yaml
+
+images:
+  - name: frontend-dev
+    # Dev-specific tag
+    newTag: dev-123456
+
+# Namespace for dev
+namespace: frontend-dev

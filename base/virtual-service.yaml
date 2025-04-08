@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: demo-virtual-service
+spec:
+  # hosts:
+  #   - 'domain.com'
+  http:
+    # backend
+    - match:
+        - uri:
+            prefix: /be/api
+      route:
+        - destination:
+            port:
+              number: 8000
+            host: be-service.dev.svc.cluster.local
+    # frontend
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            port:
+              number: 3000
+            host: fe-service.dev.svc.cluster.local

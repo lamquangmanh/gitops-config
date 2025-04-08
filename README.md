@@ -1,1 +1,3 @@
-# gcp
+# Gitops
+
+## How it works
