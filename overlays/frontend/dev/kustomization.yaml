@@ -1,3 +1,4 @@
 resources:
   - account.yaml
   - deployment.yaml
+  - service.yaml
