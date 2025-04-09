@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: frontend-dev
   name: hello-app
+  labels:
+    app: hello-app-label
 spec:
   replicas: 2
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: hello-app
+      app: hello-app-label
   template:
     metadata:
       labels:
-        app: hello-app
+        app: hello-app-label
     spec:
       containers:
-        - image: gcr.io/google-samples/hello-app:1.0
-          name: hello-app
+        - name: hello-app
+          image: gcr.io/google-samples/hello-app:1.0
           ports:
             - containerPort: 8080
