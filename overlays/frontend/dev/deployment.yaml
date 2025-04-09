@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: frontend-dev
   name: hello-app
   labels:
     app: hello-app-label
 spec:
   replicas: 2
-  revisionHistoryLimit: 2
+  # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: hello-app-label
