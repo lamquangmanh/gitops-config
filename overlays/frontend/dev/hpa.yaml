@@ -1,0 +1,29 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-app-hpa
+  namespace: frontend-dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-app
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        # Specifies that the HPA should monitor CPU usage.
+        name: cpu
+        target:
+          type: Utilization
+          # The target is 60% CPU utilization across all pods.
+          averageUtilization: 60
+    - type: Resource
+      resource:
+        # Specifies that the HPA should monitor memory usage
+        name: memory
+        target:
+          type: Utilization
+          # The target is 70% memory utilization across all pods.
+          averageUtilization: 70
