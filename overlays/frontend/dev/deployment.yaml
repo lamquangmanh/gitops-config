@@ -6,7 +6,7 @@ metadata:
   labels:
     app: hello-app-label
 spec:
-  replicas: 2
+  replicas: 1
   # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
   revisionHistoryLimit: 3
   selector:
