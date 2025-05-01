@@ -27,7 +27,7 @@ spec:
       source:
         repoURL: https://github.com/lamquangmanh/gitops-config.git
         targetRevision: main
-        # This points to the folder in your Git repo (e.g., apps/frontend/dev)
+        # This points to the folder in your Git repo (e.g., overlays/frontend/dev)
         path: overlays/{{app}}/{{env}}
       destination:
         server: https://kubernetes.default.svc

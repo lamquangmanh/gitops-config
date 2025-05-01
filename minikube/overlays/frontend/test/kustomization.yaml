@@ -1,0 +1,13 @@
+resources:
+  - ../../../base # Use the base resources
+  - account.yaml
+
+images:
+  - name: frontend-test
+    # Dev-specific tag
+    newTag: test-123456
+
+# Namespace for dev
+namespace: frontend-test
+# More replicas for test
+# replicas: 3
