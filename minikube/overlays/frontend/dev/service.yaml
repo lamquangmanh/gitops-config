@@ -11,3 +11,4 @@ spec:
       targetPort: 3000
   selector:
     app: demo-fe-svc-label
+  type: NodePort
