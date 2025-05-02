@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/lamquangmanh/gitops-config.git
     targetRevision: HEAD
-    path: apps
+    path: minikube/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
