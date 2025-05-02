@@ -18,10 +18,10 @@ spec:
         app: demo-fe-label
     spec:
       containers:
-        - name: demo-app
-          image: gcr.io/google-samples/hello-app:1.0
+        - name: demo-fe
+          image: quangmanhlam/demo-fe:be177fc8b48b855fc4b855e223acb24e21d15c71
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           resources:
             requests:
               cpu: '64m' # Minimum CPU requested (200 millicores)

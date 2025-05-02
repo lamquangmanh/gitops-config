@@ -2,12 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: frontend-dev
-  name: hello-app-svc
+  name: demo-fe-svc
   labels:
-    app: hello-app-svc-label
+    app: demo-fe-svc-label
 spec:
   ports:
-    - port: 3001
-      targetPort: 8080
+    - port: 3000
+      targetPort: 3000
   selector:
-    app: hello-app-svc-label
+    app: demo-fe-svc-label
