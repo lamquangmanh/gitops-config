@@ -12,4 +12,13 @@ spec:
       nodePort: 30080 # Explicitly specify the NodePort to access externally
   selector:
     app: demo-fe-svc-label
-  type: NodePort
+
+  # To expose the service externally (Optional):
+  # For LoadBalancer (e.g., on cloud environments like GCP, AWS):
+  # type: LoadBalancer
+
+  # For NodePort (e.g., for local Kubernetes setups like Minikube):
+  # type: NodePort
+
+  # Default type, can be changed to NodePort or LoadBalancer
+  # type: ClusterIP
