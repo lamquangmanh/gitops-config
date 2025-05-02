@@ -11,7 +11,7 @@ spec:
       targetPort: 3000 # The port your container is listening on
       nodePort: 30080 # Explicitly specify the NodePort to access externally
   selector:
-    app: demo-fe-svc-label
+    app: demo-fe-label
 
   # To expose the service externally (Optional):
   # For LoadBalancer (e.g., on cloud environments like GCP, AWS):
