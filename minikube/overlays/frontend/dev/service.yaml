@@ -7,8 +7,9 @@ metadata:
     app: demo-fe-svc-label
 spec:
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 3000 # External port within the cluster
+      targetPort: 3000 # The port your container is listening on
+      nodePort: 30080 # Explicitly specify the NodePort to access externally
   selector:
     app: demo-fe-svc-label
   type: NodePort
