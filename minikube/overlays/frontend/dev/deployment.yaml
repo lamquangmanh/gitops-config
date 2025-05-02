@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: demo-fe
-          image: quangmanhlam/demo-fe:be177fc8b48b855fc4b855e223acb24e21d15c71
+          image: deployment-image
           ports:
             - containerPort: 3000
           resources:
