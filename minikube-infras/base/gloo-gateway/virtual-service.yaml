@@ -1,0 +1,40 @@
+# base/gloo-gateway/virtual-service.yaml
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: default
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - '*'
+    routes:
+      - matchers:
+          - prefix: '*'
+        options:
+          extauth:
+            config:
+              name: opa-auth-config
+              namespace: gloo-system
+        routes:
+          - matchers:
+              - prefix: /customer
+            routeAction:
+              single:
+                upstream:
+                  name: customer-frontend-service
+                  namespace: gloo-system
+          - matchers:
+              - prefix: '/api'
+            routeAction:
+              single:
+                upstream:
+                  name: user-backend-service
+                  namespace: gloo-system
+          - matchers:
+              - prefix: '*'
+            routeAction:
+              single:
+                upstream:
+                  name: user-frontend-service
+                  namespace: gloo-system

@@ -1,0 +1,46 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: user-frontend-service
+  namespace: gloo-system
+spec:
+  kube:
+    serviceName: user-frontend-service
+    serviceNamespace: frontend-dev
+    servicePort: 3000
+
+---
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: user-backend-service
+  namespace: gloo-system
+spec:
+  kube:
+    serviceName: user-backend-service
+    serviceNamespace: backend-dev
+    servicePort: 3001
+
+---
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: customer-frontend-service
+  namespace: gloo-system
+spec:
+  kube:
+    serviceName: customer-frontend-service
+    serviceNamespace: frontend-dev
+    servicePort: 3000
+
+---
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: customer-backend-service
+  namespace: gloo-system
+spec:
+  kube:
+    serviceName: customer-backend-service
+    serviceNamespace: backend-dev
+    servicePort: 3001

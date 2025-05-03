@@ -1,0 +1,13 @@
+apiVersion: extauth.solo.io/v1alpha1
+kind: ExtAuthConfig
+metadata:
+  name: opa-auth-config
+  namespace: gloo-system
+spec:
+  glooAuth:
+    configs:
+      - opaAuth:
+          request:
+            http:
+              uri: http://opa.opa.svc.cluster.local:8181/v1/data/authz/allow
+              method: POST
