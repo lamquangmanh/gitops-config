@@ -11,8 +11,8 @@ spec:
               elements:
                 - app: frontend
                   repoURL: https://github.com/lamquangmanh/demo-fe.git
-                # - app: backend
-                # repoURL: https://github.com/lamquangmanh/demo-be.git
+                - app: backend
+                  repoURL: https://github.com/lamquangmanh/demo-be.git
           - list:
               elements:
                 - env: dev
@@ -27,8 +27,8 @@ spec:
       source:
         repoURL: https://github.com/lamquangmanh/gitops-config.git
         targetRevision: main
-        # This points to the folder in your Git repo (e.g., minikube/overlays/frontend/dev)
-        path: minikube/overlays/{{app}}/{{env}}
+        # This points to the folder in your Git repo (e.g., k3s-apps/overlays/frontend/dev)
+        path: k3s-apps/overlays/{{app}}/{{env}}
       destination:
         server: https://kubernetes.default.svc
         # Dynamic namespace, e.g., frontend-dev, backend-prod

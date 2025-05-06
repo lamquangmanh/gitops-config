@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/lamquangmanh/gitops-config.git
     targetRevision: HEAD
-    path: minikube-infras/apps
+    path: k3s-infras/apps
   syncPolicy:
     automated:
       prune: true

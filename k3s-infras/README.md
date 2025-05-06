@@ -1,23 +1,19 @@
-Great! Here's a high-level flow of your infrastructure setup along with an explanation and a text-based diagram.
-
----
-
 ### 🔁 Infrastructure Flow
 
 1. **GitHub Repo (`gitops-config`)**
-   → Stores all Kubernetes manifests (infra/services/applications).
+   → Stores all Kubernetes manifests (k3s-apps, k3s-infras).
 
 2. **GitHub Actions**
    → Triggered on changes to `gitops-config` repo (e.g., push to `main`).
    → Deploys changes to ArgoCD (via `kubectl apply` or ArgoCD CLI).
 
 3. **ArgoCD**
-   → Syncs the manifests into your local Minikube Kubernetes cluster.
+   → Syncs the manifests into your local K3s Kubernetes cluster.
    → Deploys:
 
    - Gloo Gateway
    - OPA (Open Policy Agent)
-   - Your microservices (e.g., User Service, etc.)
+   - Your microservices (e.g., User Service (FE, BFF, BE), etc.)
 
 4. **Gloo Gateway**
    → Acts as the API gateway for all incoming traffic.
@@ -47,7 +43,7 @@ Great! Here's a high-level flow of your infrastructure setup along with an expla
 [ GitHub Actions ]
      |
      v
-[ ArgoCD (in Minikube) ]
+[ ArgoCD (in K3s) ]
      |
      v
 +-------------------+
@@ -64,15 +60,11 @@ Great! Here's a high-level flow of your infrastructure setup along with an expla
 +-------------------+
 ```
 
-Thanks! Based on your architecture, here’s how you can define your Kubernetes manifests, following a GitOps approach using ArgoCD, Gloo Gateway, OPA, and your microservices.
-
----
-
 ### 🔧 **Architecture Overview**
 
 1. **GitHub (gitops-config repo)**: Stores all Kubernetes manifests.
 2. **GitHub Actions**: Triggers deployment by updating ArgoCD configuration.
-3. **ArgoCD**: Deploys all components to Minikube.
+3. **ArgoCD**: Deploys all components to K3s.
 4. **Gloo Gateway**: Handles ingress traffic.
 5. **OPA (Open Policy Agent)**: Enforces access control.
 6. **User Service**: Provides user permissions for OPA.
@@ -87,9 +79,9 @@ gitops-config/
 ├── apps/
 │   ├── gloo-gateway/
 │   ├── opa/
-│   ├── user-service/
 │   ├── microservices/
 │   │   ├── order-service/
+│   │   ├── user-service/
 │   │   └── product-service/
 ├── base/
 │   ├── gloo-gateway/

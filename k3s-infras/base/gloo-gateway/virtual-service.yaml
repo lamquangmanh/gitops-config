@@ -17,6 +17,7 @@ spec:
               name: opa-auth-config
               namespace: gloo-system
         routes:
+          # This route is for the customer frontend service and the customer backend service
           - matchers:
               - prefix: /customer
             routeAction:
@@ -24,6 +25,14 @@ spec:
                 upstream:
                   name: customer-frontend-service
                   namespace: gloo-system
+          - matchers:
+              - prefix: /customer/api
+            routeAction:
+              single:
+                upstream:
+                  name: customer-backend-service
+                  namespace: gloo-system
+          # This route is for the user frontend service and the user backend service
           - matchers:
               - prefix: '/api'
             routeAction:
