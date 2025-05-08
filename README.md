@@ -94,15 +94,3 @@ kubectl apply -f apps/app-of-apps.yaml -n argocd
 ```
 
 This will make ArgoCD sync `application-set.yaml` → which auto-creates all apps under `overlays/*/*`.
-
----
-
-## 🧩 Bonus: Want to split frontend/backend into different repos?
-
-I can help you:
-
-- Use `matrix` or `list` generators
-- Use Helm instead of Kustomize (optional)
-- Separate repoURL per app
-
-Let me know how far you want to take this!
