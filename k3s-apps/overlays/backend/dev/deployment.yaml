@@ -27,6 +27,9 @@ spec:
             - name: grpc
               containerPort: 5000
               protocol: TCP
+          envFrom:
+            - secretRef:
+                name: backend-dev-sealed-secret
           resources:
             requests:
               cpu: '64m' # Minimum CPU requested (200 millicores)
