@@ -32,7 +32,7 @@ metadata:
   namespace: backend-dev
 spec:
   type: ExternalName
-  externalName: postgresql.manhlam.name.vn
+  externalName: 14.191.68.229
   ports:
     - port: 5432
       targetPort: 5432
@@ -44,7 +44,7 @@ metadata:
   namespace: backend-dev
 spec:
   type: ExternalName
-  externalName: redis.manhlam.name.vn
+  externalName: 14.191.68.229
   ports:
     - port: 6379
       targetPort: 6379
