@@ -17,13 +17,13 @@ spec:
         name: cpu
         target:
           type: Utilization
-          # The target is 60% CPU utilization across all pods.
-          averageUtilization: 60
+          # The target is 80% CPU utilization across all pods.
+          averageUtilization: 80
     - type: Resource
       resource:
         # Specifies that the HPA should monitor memory usage
         name: memory
         target:
           type: Utilization
-          # The target is 70% memory utilization across all pods.
-          averageUtilization: 70
+          # The target is 80% memory utilization across all pods.
+          averageUtilization: 80
