@@ -32,7 +32,7 @@ metadata:
   namespace: backend-dev
 spec:
   type: ExternalName
-  externalName: 14.191.68.229
+  externalName: 192.168.1.4
   ports:
     - port: 5432
       targetPort: 5432
@@ -44,7 +44,7 @@ metadata:
   namespace: backend-dev
 spec:
   type: ExternalName
-  externalName: 14.191.68.229
+  externalName: 192.168.1.4
   ports:
     - port: 6379
       targetPort: 6379
