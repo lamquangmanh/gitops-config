@@ -27,5 +27,5 @@ spec:
               cpu: '64m' # Minimum CPU requested (200 millicores)
               memory: '128Mi' # Minimum memory requested (256 MiB)
             limits:
-              cpu: '512Mi' # Maximum CPU allowed (512 MiB)
+              cpu: '2' # Maximum CPU allowed (1024 millicores = 1 CPU)
               memory: '1Gi' # Maximum memory allowed (1 GiB)
