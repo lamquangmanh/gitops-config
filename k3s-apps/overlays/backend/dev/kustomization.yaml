@@ -10,4 +10,4 @@ resources:
 images:
 - name: deployment-image
   newName: quangmanhlam/demo-be
-  newTag: 0d8685b1c2fbdd02d7e356431897cf008f9bb8dc
+  newTag: 0d570ff3680b5b806030bb762491287b690476ae
