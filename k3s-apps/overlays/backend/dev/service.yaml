@@ -31,7 +31,7 @@ metadata:
   name: postgres
 spec:
   type: ExternalName
-  externalName: postgres.manhlam.name.vn
+  externalName: postgresql.manhlam.name.vn
   ports:
     - port: 5432
       targetPort: 5432
