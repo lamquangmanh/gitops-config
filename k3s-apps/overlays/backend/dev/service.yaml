@@ -28,7 +28,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: postgres-service
+  namespace: backend-dev
 spec:
   type: ExternalName
   externalName: postgresql.manhlam.name.vn
@@ -39,7 +40,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis
+  name: redis-service
+  namespace: backend-dev
 spec:
   type: ExternalName
   externalName: redis.manhlam.name.vn
