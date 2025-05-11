@@ -13,13 +13,25 @@ spec:
 apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
+  name: auth-backend-service
+  namespace: gloo-system
+spec:
+  kube:
+    serviceName: auth-backend-service
+    serviceNamespace: backend-dev
+    servicePort: 3000
+
+---
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
   name: user-backend-service
   namespace: gloo-system
 spec:
   kube:
     serviceName: user-backend-service
     serviceNamespace: backend-dev
-    servicePort: 3001
+    servicePort: 5000
 
 ---
 apiVersion: gloo.solo.io/v1
@@ -43,4 +55,4 @@ spec:
   kube:
     serviceName: customer-backend-service
     serviceNamespace: backend-dev
-    servicePort: 3001
+    servicePort: 5000

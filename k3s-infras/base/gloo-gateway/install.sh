@@ -4,4 +4,5 @@ helm repo update
 
 helm install gloo gloo/gloo \
   --namespace gloo-system \
-  --create-namespace
+  --create-namespace \
+  -f gloo-values.yaml

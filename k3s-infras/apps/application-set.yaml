@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-applicationset-infras
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - name: infras
+          - list:
+              elements:
+                - env: dev
+                - env: test
+                - env: stage
+  template:
+    metadata:
+      # This will create names like infras-dev, infras-test, infras-stage
+      name: '{{name}}-{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/lamquangmanh/gitops-config.git
+        targetRevision: main
+        # This points to the folder in your Git repo (e.g., k3s-infras/overlays/dev, k3s-infras/overlays/test, k3s-infras/overlays/stage)
+        path: k3s-infras/overlays/\{{env}}
+      destination:
+        server: https://kubernetes.default.svc
+        # Dynamic namespace, e.g., frontend-dev, backend-prod
+        namespace: '{{name}}-{{env}}'
+      syncPolicy:
+        automated:
+          # ArgoCD will automatically delete (prune) resources in the cluster that are no longer defined in Git.
+          prune: true
+          # If a deployed resource is manually modified in the cluster, ArgoCD will automatically revert it back to the state defined in Git.
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
