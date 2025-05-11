@@ -9,7 +9,8 @@ spec:
         generators:
           - list:
               elements:
-                - name: infras
+                - name: gloo-gateway
+                - name: opa
           - list:
               elements:
                 - env: dev
@@ -17,7 +18,7 @@ spec:
                 - env: stage
   template:
     metadata:
-      # This will create names like infras-dev, infras-test, infras-stage
+      # This will create names like gloo-gateway-dev, gloo-gateway-test, gloo-gateway-stage
       name: '{{name}}-{{env}}'
     spec:
       project: default
@@ -25,10 +26,10 @@ spec:
         repoURL: https://github.com/lamquangmanh/gitops-config.git
         targetRevision: main
         # This points to the folder in your Git repo (e.g., k3s-infras/overlays/dev, k3s-infras/overlays/test, k3s-infras/overlays/stage)
-        path: k3s-infras/overlays/\{{env}}
+        path: k3s-infras/overlays/{{name}}/{{env}}
       destination:
         server: https://kubernetes.default.svc
-        # Dynamic namespace, e.g., frontend-dev, backend-prod
+        # Dynamic namespace, e.g., gloo-gateway-dev, opa-prod
         namespace: '{{name}}-{{env}}'
       syncPolicy:
         automated:

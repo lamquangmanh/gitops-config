@@ -2,8 +2,8 @@
 apiVersion: gateway.solo.io/v1
 kind: VirtualService
 metadata:
-  name: default
-  namespace: gloo-system
+  name: gloo-gateway-virtual-service
+  namespace: gloo-gateway-dev
 spec:
   virtualHost:
     domains:
@@ -26,7 +26,7 @@ spec:
                   name: customer-frontend-service
                   namespace: gloo-system
           - matchers:
-              - prefix: /customer/api
+              - prefix: /customer/graphql
             routeAction:
               single:
                 upstream:

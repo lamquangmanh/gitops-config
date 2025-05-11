@@ -2,7 +2,7 @@ apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
   name: user-frontend-service
-  namespace: gloo-system
+  namespace: gloo-gateway-dev
 spec:
   kube:
     serviceName: user-frontend-service
@@ -14,10 +14,10 @@ apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
   name: auth-backend-service
-  namespace: gloo-system
+  namespace: gloo-gateway-dev
 spec:
   kube:
-    serviceName: auth-backend-service
+    serviceName: user-backend-service
     serviceNamespace: backend-dev
     servicePort: 3000
 
@@ -26,7 +26,7 @@ apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
   name: user-backend-service
-  namespace: gloo-system
+  namespace: gloo-gateway-dev
 spec:
   kube:
     serviceName: user-backend-service
@@ -38,7 +38,7 @@ apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
   name: customer-frontend-service
-  namespace: gloo-system
+  namespace: gloo-gateway-dev
 spec:
   kube:
     serviceName: customer-frontend-service
@@ -50,7 +50,7 @@ apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
   name: customer-backend-service
-  namespace: gloo-system
+  namespace: gloo-gateway-dev
 spec:
   kube:
     serviceName: customer-backend-service

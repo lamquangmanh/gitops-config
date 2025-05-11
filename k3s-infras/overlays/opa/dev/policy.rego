@@ -13,7 +13,7 @@ user_has_permission {
   token := trim(split(input.headers.Authorization, " ")[1])
   resp := http.send({
     "method": "POST",
-    "url": "http://demo-backend-service.default.svc.cluster.local/auth/verify",
+    "url": "http://auth-be-svc.backend-dev.svc.cluster.local/auth/verify",
     "headers": {
       "Authorization": input.headers.Authorization
     },

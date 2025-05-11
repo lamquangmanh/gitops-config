@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: opa-policy
-  namespace: opa
+  namespace: opa-dev
 data:
   policy.rego: |
     package authz
@@ -20,7 +20,7 @@ data:
       token := trim(split(input.headers.Authorization, " ")[1])
       resp := http.send({
         "method": "POST",
-        "url": "http://demo-backend-service.default.svc.cluster.local/auth/verify",
+        "url": "http://demo-be-svc.backend-dev.svc.cluster.local/auth/verify",
         "headers": {
           "Authorization": input.headers.Authorization
         },

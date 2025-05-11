@@ -1,4 +1,0 @@
-resources:
-  - upstream.yaml
-  - virtual-service.yaml
-  - ext-auth-config.yaml
