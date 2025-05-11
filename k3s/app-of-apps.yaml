@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps-of-infrastructure
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/lamquangmanh/gitops-config.git
+    targetRevision: HEAD
+    path: k3s/infrastructure/apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps-of-microservice
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/lamquangmanh/gitops-config.git
+    targetRevision: HEAD
+    path: k3s/microservice/apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

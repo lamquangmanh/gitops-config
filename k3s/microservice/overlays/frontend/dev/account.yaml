@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: frontend-dev
+  name: default-ksa
+  annotations:
+    iam.gke.io/gcp-service-account: demo-fe@central-embassy-454003-k2.iam.gserviceaccount.com
