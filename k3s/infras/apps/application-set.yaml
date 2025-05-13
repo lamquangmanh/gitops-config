@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: demo-applicationset-infras
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - name: traefik-ingress
+                - name: opa
+          - list:
+              elements:
+                - env: dev
+                # - env: test
+                # - env: stage
+  template:
+    metadata:
+      # This will create names like traefik-ingress-dev, opa-dev
+      name: '{{name}}-{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/lamquangmanh/gitops-config.git
+        targetRevision: main
+        # This points to the folder in your Git repo (e.g., k3s/infras/overlays/traefik-ingress/dev, k3s/infras/overlays/opa/dev
+        path: k3s/infras/overlays/{{name}}/{{env}}
+      destination:
+        server: https://kubernetes.default.svc
+        # Dynamic namespace, gloo-gateway-dev, opa-dev
+        namespace: '{{name}}-{{env}}'
+      syncPolicy:
+        automated:
+          # ArgoCD will automatically delete (prune) resources in the cluster that are no longer defined in Git.
+          prune: true
+          # If a deployed resource is manually modified in the cluster, ArgoCD will automatically revert it back to the state defined in Git.
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

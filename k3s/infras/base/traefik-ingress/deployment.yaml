@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        app: traefik
+    spec:
+      containers:
+        - name: traefik
+          image: traefik:v2.11
+          args:
+            - '--entrypoints.web.address=:80'
+            - '--providers.kubernetescrd'
+            - '--api.insecure=true'
+            - '--experimental.plugins.opa.moduleName=github.com/traefik/plugin-opa'
+          ports:
+            - name: web
+              containerPort: 80

@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: opa-auth
+spec:
+  plugin:
+    opa:
+      address: http://opa.opa-dev.svc.cluster.local:8181
+      query: 'data.traefik.authz.allow'
+      body: true
