@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: dashboard-auth
+  namespace: traefik
+spec:
+  basicAuth:
+    realm: 'Traefik Dashboard'
+    users:
+      - 'admin:$2y$05$B5zdmRzlyWno5GJzpcPYW.szTL01g1qSeHfIntrVn9ew.4qYuFcYG'
