@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: traefik
 resources:
-  - ../../../base/traefik-ingress
+  - ../../../base/traefik-ingress/service.yaml
+  - ../../../base/traefik-ingress/deployment.yaml
   - ingress.yaml
   - middleware-opa.yaml
