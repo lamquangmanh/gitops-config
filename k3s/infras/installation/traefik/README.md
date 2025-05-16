@@ -73,7 +73,7 @@ Ví dụ tạo Secret (thay `admin:123456` bằng user\:password bạn muốn):
 ```bash
 kubectl create secret generic traefik-dashboard-auth-secret \
   --from-literal=users=admin:$2y$05$B5zdmRzlyWno5GJzpcPYW.szTL01g1qSeHfIntrVn9ew.4qYuFcYG \
-  -n traefik
+  -n kube-system
 ```
 
 ### Bước 2: Tạo Middleware YAML tham chiếu Secret
