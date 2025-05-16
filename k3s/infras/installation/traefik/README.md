@@ -41,3 +41,9 @@ Còn nếu có Prometheus, bạn sẽ thấy các metrics tại:
 ```
 http://<traefik-ip>/metrics
 ```
+
+Cập nhật traefik service
+
+```
+helm upgrade traefik traefik/traefik --namespace traefik -f values.yaml
+```
