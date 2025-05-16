@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: opa-policy
-  namespace: opa
+  namespace: opa-dev
   labels:
     app: opa
 
