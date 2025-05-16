@@ -4,5 +4,8 @@ namespace: opa
 resources:
   - ../../../base/opa
 
-patchesStrategicMerge:
-  - policy-configmap.yaml
+patches:
+  - path: policy-configmap.yaml
+    target:
+      kind: ConfigMap
+      name: opa-policy

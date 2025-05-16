@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traefik
+  name: traefik-ingress-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: traefik
+      app: traefik-ingress
   template:
     metadata:
       labels:
-        app: traefik
+        app: traefik-ingress
     spec:
       containers:
         - name: traefik
