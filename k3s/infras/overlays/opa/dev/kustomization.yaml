@@ -3,4 +3,6 @@ kind: Kustomization
 namespace: opa
 resources:
   - ../../../base/opa
+
+patchesStrategicMerge:
   - policy-configmap.yaml

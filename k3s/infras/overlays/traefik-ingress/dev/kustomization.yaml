@@ -3,5 +3,7 @@ kind: Kustomization
 namespace: traefik
 resources:
   - ../../../base/traefik-ingress
+
+patchesStrategicMerge:
   - ingress.yaml
   - middleware-opa.yaml
