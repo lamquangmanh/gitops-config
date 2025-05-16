@@ -6,5 +6,4 @@ metadata:
 spec:
   basicAuth:
     realm: 'Traefik Dashboard'
-    users:
-      - 'admin:$2y$05$B5zdmRzlyWno5GJzpcPYW.szTL01g1qSeHfIntrVn9ew.4qYuFcYG'
+    secret: traefik-dashboard-auth-secret
