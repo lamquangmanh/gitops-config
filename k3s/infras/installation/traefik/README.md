@@ -11,6 +11,7 @@ helm repo add traefik https://traefik.github.io/charts
 helm repo update
 kubectl create namespace traefik
 
+# option 1
 helm install traefik traefik/traefik \
   --namespace traefik \
   --create-namespace \
@@ -27,6 +28,7 @@ helm install traefik traefik/traefik \
   --set logs.general.level=DEBUG \
   --set healthcheck.enabled=true
 
+# option 2
 ```
 
 🩺 Kiểm tra health
