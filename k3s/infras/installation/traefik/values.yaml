@@ -1,3 +1,13 @@
+podSecurityContext:
+  runAsUser: 1000 # user không phải root, có thể tùy chỉnh
+  runAsGroup: 1000
+  fsGroup: 1000
+
+securityContext:
+  capabilities:
+    add:
+      - NET_BIND_SERVICE
+
 ports:
   web:
     port: 80

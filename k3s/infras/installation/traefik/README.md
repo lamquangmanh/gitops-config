@@ -48,4 +48,7 @@ Cập nhật traefik service
 
 ```
 helm upgrade traefik traefik/traefik --namespace traefik -f values.yaml
+
+helm upgrade traefik traefik/traefik --namespace traefik --create-namespace -f values.yaml
+
 ```
