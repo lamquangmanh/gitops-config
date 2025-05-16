@@ -72,7 +72,11 @@ Ví dụ tạo Secret (thay `admin:123456` bằng user\:password bạn muốn):
 
 ```bash
 kubectl create secret generic traefik-dashboard-auth-secret \
-  --from-literal=users=admin:$2y$05$B5zdmRzlyWno5GJzpcPYW.szTL01g1qSeHfIntrVn9ew.4qYuFcYG \
+  --from-literal=users=admin:$2y$05$KR4vqhGThjK.I.SvpNgwSeU8da.KsfRff2XliZG.tvz.kQ/ImsKwO \
+  -n kube-system
+
+kubectl create secret generic dashboard-auth-secret \
+  --from-literal=users=admin:$(openssl passwd -apr1 Admin@$0101) \
   -n kube-system
 ```
 
