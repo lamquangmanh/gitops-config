@@ -7,9 +7,9 @@ metadata:
     app: demo-be-svc-label
 spec:
   ports:
-    # - name: http
-    #   port: 3000 # External port within the cluster
-    #   targetPort: 3000 # The port your container is listening on
+    - name: http
+      port: 3000 # External port within the cluster
+      targetPort: 3000 # The port your container is listening on
     - name: grpc
       port: 5000 # External port within the cluster
       targetPort: 5000 # The port your container is listening on
@@ -24,18 +24,18 @@ spec:
 
   # Default type, can be changed to NodePort or LoadBalancer
   # type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: backend-dev
-  name: auth-be-svc
-  labels:
-    app: auth-be-svc-label
-spec:
-  ports:
-    - name: http
-      port: 3000 # External port within the cluster
-      targetPort: 3000 # The port your container is listening on
-  selector:
-    app: demo-be-label
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   namespace: backend-dev
+#   name: auth-be-svc
+#   labels:
+#     app: auth-be-svc-label
+# spec:
+#   ports:
+#     - name: http
+#       port: 3000 # External port within the cluster
+#       targetPort: 3000 # The port your container is listening on
+#   selector:
+#     app: demo-be-label
