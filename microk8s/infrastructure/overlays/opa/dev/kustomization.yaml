@@ -10,3 +10,7 @@ patches:
     target:
       kind: ConfigMap
       name: opa-policy
+  - path: deployment.yaml
+    target:
+      kind: Deployment
+      name: opa-deployment

@@ -7,5 +7,5 @@ commonLabels:
   app: opa
 
 resources:
-  - deployment.yaml
+  # - deployment.yaml
   - service.yaml
