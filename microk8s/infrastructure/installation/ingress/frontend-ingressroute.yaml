@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: frontend
+  namespace: frontend-dev
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: demo-fe-svc # name of Service in app frontend
+          port: 3000 # Port in Cluster that frontend app is running
+  # If you use Traefik Middleware to call OPA, add the following lines
+  # middlewares:
+  #   - name: opa-auth # Name of Middleware OPA in Traefik
+  #     namespace: opa-dev

@@ -1,7 +1,7 @@
 ### 🔁 Infrastructure Flow
 
 1. **GitHub Repo (`gitops-config`)**
-   → Stores all Kubernetes manifests (k3s-apps, k3s-infras).
+   → Stores all Kubernetes manifests (microk8s/microservices, microk8s/infrastructure).
 
 2. **GitHub Actions**
    → Triggered on changes to `gitops-config` repo (e.g., push to `main`).
@@ -11,11 +11,11 @@
    → Syncs the manifests into your local K3s Kubernetes cluster.
    → Deploys:
 
-   - Gloo Gateway
+   - Traefik
    - OPA (Open Policy Agent)
    - Your microservices (e.g., User Service (FE, BFF, BE), etc.)
 
-4. **Gloo Gateway** or **Traefik**
+4. **Traefik**
    → Acts as the API gateway for all incoming traffic.
    → Forwards requests to OPA for authorization.
 
@@ -43,13 +43,13 @@
 [ GitHub Actions ]
      |
      v
-[ ArgoCD (in K3s) ]
+[ ArgoCD (in Microk8s) ]
      |
      v
 +-------------------+
 |   Kubernetes      |
 | +---------------+ |         +------------------+
-| | Gloo or Traefik |<--------->| OPA (Auth Policy)|
+| |    Traefik    |<--------->| OPA (Auth Policy)|
 | +-------+-------+ |               |
 |         |         |               v
 |         v         |         [ HTTP call ]
@@ -64,7 +64,7 @@
 
 1. **GitHub (gitops-config repo)**: Stores all Kubernetes manifests.
 2. **GitHub Actions**: Triggers deployment by updating ArgoCD configuration.
-3. **ArgoCD**: Deploys all components to K3s.
+3. **ArgoCD**: Deploys all components to Microk8s.
 4. **Gloo Gateway** or **Traefik**: Handles ingress traffic.
 5. **OPA (Open Policy Agent)**: Enforces access control.
 6. **User Service**: Provides user permissions for OPA.
