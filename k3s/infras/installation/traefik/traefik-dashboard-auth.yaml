@@ -7,4 +7,4 @@ metadata:
 spec:
   basicAuth:
     realm: 'Traefik Dashboard'
-    secret: dashboard-auth-secret-2
+    secret: dashboard-auth-secret-5
