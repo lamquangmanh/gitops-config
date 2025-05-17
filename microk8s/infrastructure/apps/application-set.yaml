@@ -25,8 +25,8 @@ spec:
       source:
         repoURL: https://github.com/lamquangmanh/gitops-config.git
         targetRevision: main
-        # This points to the folder in your Git repo (e.g., microk8s/infras/overlays/traefik-ingress/dev, microk8s/infras/overlays/opa/dev
-        path: microk8s/infras/overlays/{{name}}/{{env}}
+        # This points to the folder in your Git repo (e.g., microk8s/infrastructure/overlays/traefik-ingress/dev, microk8s/infrastructure/overlays/opa/dev
+        path: microk8s/infrastructure/overlays/{{name}}/{{env}}
       destination:
         server: https://kubernetes.default.svc
         # Dynamic namespace, gloo-gateway-dev, opa-dev
