@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-dashboard
+  namespace: argocd
+spec:
+  entryPoints:
+    - websecure # Sử dụng HTTPS
+  routes:
+    - match: Host(`argocd.manhlam.name.vn`)
+      kind: Rule
+      services:
+        - name: argocd-server
+          port: 80
+      middlewares:
+        - name: argocd-strip-prefix
+  tls:
+    # Nếu bạn dùng certResolver, bật dòng dưới
+    # certResolver: cloudflare
+    # Nếu dùng Cloudflare Tunnel (SSL Full mode), chỉ cần enable tls là đủ
+    passthrough: false

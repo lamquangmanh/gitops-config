@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/lamquangmanh/gitops-config.git
     targetRevision: HEAD
-    path: k3s/infras/apps
+    path: microk8s/infrastructure/apps
   syncPolicy:
     automated:
       prune: true
@@ -27,7 +27,7 @@ spec:
   source:
     repoURL: https://github.com/lamquangmanh/gitops-config.git
     targetRevision: HEAD
-    path: k3s/microservice/apps
+    path: microk8s/microservice/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
