@@ -20,26 +20,28 @@
 #     # Nếu dùng Cloudflare Tunnel (SSL Full mode), chỉ cần enable tls là đủ
 #     passthrough: false
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd
-  namespace: argocd
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: 'true'
-spec:
-  tls:
-    - hosts:
-        - argocd.manhlam.name.vn
-  rules:
-    - host: argocd.manhlam.name.vn
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 443
+# -------
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd
+#   namespace: argocd
+#   annotations:
+#     traefik.ingress.kubernetes.io/router.entrypoints: websecure
+#     traefik.ingress.kubernetes.io/router.tls: 'true'
+# spec:
+#   tls:
+#     - hosts:
+#         - argocd.manhlam.name.vn
+#   rules:
+#     - host: argocd.manhlam.name.vn
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: argocd-server
+#                 port:
+#                   number: 443
+
