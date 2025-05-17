@@ -12,7 +12,7 @@ spec:
       services:
         - name: demo-fe-svc # name of Service in app frontend
           port: 3000 # Port in Cluster that frontend app is running
-  # If you use Traefik Middleware to call OPA, add the following lines
-  # middlewares:
-  #   - name: opa-auth # Name of Middleware OPA in Traefik
-  #     namespace: opa-dev
+      # If you use Traefik Middleware to call OPA, add the following lines
+      # middlewares:
+      #   - name: opa-auth # Name of Middleware OPA in Traefik
+      #     namespace: opa-dev
