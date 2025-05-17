@@ -14,4 +14,4 @@ spec:
         - name: api@internal
           kind: TraefikService
       middlewares:
-        - name: dashboard-auth # Gắn middleware auth tại đây
+        - name: dashboard-auth # add middleware auth here
