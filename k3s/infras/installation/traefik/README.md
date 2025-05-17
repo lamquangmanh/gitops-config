@@ -75,6 +75,16 @@ kubectl create secret generic traefik-dashboard-auth-secret \
   --from-literal=users=admin:$2y$05$KR4vqhGThjK.I.SvpNgwSeU8da.KsfRff2XliZG.tvz.kQ/ImsKwO \
   -n kube-system
 
+kubectl create secret generic dashboard-auth-secret-4 \
+  --from-literal=users="admin:$2y$05$PHHBiiVJqgivNKeO.26WbOV3X9kprgoXKw2X5eSlGCaUv63o6v3L2" \
+  -n kube-system
+
+kubectl create secret generic dashboard-auth-secret-5 \
+  --from-literal=users='admin:$2y$05$PHHBiiVJqgivNKeO.26WbOV3X9kprgoXKw2X5eSlGCaUv63o6v3L2' \
+  -n kube-system \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+
 kubectl create secret generic dashboard-auth-secret \
   --from-literal=users=admin:$(openssl passwd -apr1 Admin@$0101) \
   -n kube-system
