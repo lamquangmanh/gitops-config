@@ -29,6 +29,9 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: 'true'
 spec:
+  tls:
+    - hosts:
+        - argocd.manhlam.name.vn
   rules:
     - host: argocd.manhlam.name.vn
       http:
@@ -39,9 +42,4 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80
-  # tls:
-  #   - hosts:
-  #       - argocd.manhlam.name.vn
-  tls:
-    passthrough: false
+                  number: 443
