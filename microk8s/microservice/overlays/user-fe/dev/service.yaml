@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: frontend-dev
-  name: demo-fe-svc
+  namespace: user-fe-dev
+  name: user-fe-svc
   labels:
-    app: demo-fe-svc-label
+    app: user-fe-svc-label
 spec:
   ports:
     - port: 3000 # External port within the cluster
       targetPort: 3000 # The port your container is listening on
       # nodePort: 30080 # Explicitly specify the NodePort to access externally
   selector:
-    app: demo-fe-label
+    app: user-fe-deployment-label
 
   # To expose the service externally (Optional):
   # For LoadBalancer (e.g., on cloud environments like GCP, AWS):

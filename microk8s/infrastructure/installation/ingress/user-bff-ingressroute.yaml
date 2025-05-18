@@ -1,8 +1,8 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: bff
-  namespace: bff-dev
+  name: user-bff-ingressroute
+  namespace: user-bff-dev
 spec:
   entryPoints:
     - web
@@ -10,7 +10,7 @@ spec:
     - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
       kind: Rule
       services:
-        - name: demo-bff-svc # name of Service in app BFF
+        - name: user-bff-svc # name of Service in app BFF
           port: 3001 # Port in Cluster that BFF app is running
       # If you use Traefik Middleware to call OPA, add the following lines
       middlewares:

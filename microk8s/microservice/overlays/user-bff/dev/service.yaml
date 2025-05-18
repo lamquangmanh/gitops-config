@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: user-bff-dev
+  name: user-bff-svc
+  labels:
+    app: user-bff-svc-label
+spec:
+  ports:
+    - name: http
+      port: 3001 # External port within the cluster
+      targetPort: 3001 # The port your container is listening on
+  selector:
+    app: user-bff-deployment-label
+  type: ClusterIP # Expose the service internally within the cluster

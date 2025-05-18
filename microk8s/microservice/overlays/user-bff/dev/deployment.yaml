@@ -1,37 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: backend-dev
-  name: demo-be
+  namespace: user-bff-dev
+  name: user-bff-deployment
   labels:
-    app: demo-be-label
+    app: user-bff-deployment-label
 spec:
   replicas: 1
   # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: demo-be-label
+      app: user-bff-deployment-label
   template:
     metadata:
       labels:
-        app: demo-be-label
+        app: user-bff-deployment-label
     spec:
       hostNetwork: true # Use host networking for the pod to connect postgres and redis
       dnsPolicy: ClusterFirstWithHostNet
       containers:
-        - name: demo-be
+        - name: user-bff
           image: deployment-image
           ports:
             - name: http
-              containerPort: 3000
-              protocol: TCP
-            - name: grpc
-              containerPort: 5000
+              containerPort: 3001
               protocol: TCP
           envFrom:
             - secretRef:
-                name: backend-dev-sealed-secret
+                name: user-bff-dev-sealed-secret
           resources:
             requests:
               cpu: '64m' # Minimum CPU requested (200 millicores)

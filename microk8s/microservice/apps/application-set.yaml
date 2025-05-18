@@ -9,8 +9,9 @@ spec:
         generators:
           - list:
               elements:
-                - app: frontend
-                - app: backend
+                - app: user-fe
+                - app: user-be
+                - app: user-bff
           - list:
               elements:
                 - env: dev

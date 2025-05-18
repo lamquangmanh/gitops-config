@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: demo-fe-hpa
-  namespace: frontend-dev
+  name: user-fe-hpa
+  namespace: user-fe-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: demo-fe
+    name: user-fe-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:

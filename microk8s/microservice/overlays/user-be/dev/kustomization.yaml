@@ -5,7 +5,8 @@ resources:
   - deployment.yaml
   - service.yaml
   - hpa.yaml
+  - sealed-secrets.yaml
 images:
   - name: deployment-image
-    newName: quangmanhlam/demo-fe
-    newTag: 4113e8dde7f6564187c0e6301c9a8dd179457ae1
+    newName: quangmanhlam/user-be-dev
+    newTag: 55ce6471edfbf680d315395a298d16496d7c2ade
