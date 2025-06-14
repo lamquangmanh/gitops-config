@@ -31,7 +31,7 @@ spec:
               protocol: TCP
           envFrom:
             - secretRef:
-                name: user-be-dev-sealed-secret
+                name: user-be-dev-secret
           resources:
             requests:
               cpu: '64m' # Minimum CPU requested (200 millicores)
