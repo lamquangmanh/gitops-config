@@ -1,0 +1,60 @@
+name: K8s Workflow
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      gitops_path:
+        required: true
+        type: string
+      repository_path:
+        description: 'Docker repository name'
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: K8s and ArgoCd sync
+    runs-on: ubuntu-latest
+    # use bellow option for self-hosted runner
+    # runs-on: ['${{ inputs.RUNNER }}']
+
+    # Sets the environment dynamically using a GitHub Action input.
+    # This value determines which environment (staging, production, etc.) the workflow is targeting.
+    environment: ${{ inputs.environment }}
+
+    env:
+      PACKAGE_VERSION: ${{ github.ref_name }}
+
+    steps:
+      # Clones the repository
+      # That repository contains all kuztomize config, we need to clone it and ArgoCd will be execute it
+      - name: Checkout Config Repo
+        uses: actions/checkout@v4
+        with:
+          repository: lamquangmanh/gitops-config
+          ref: main
+          token: ${{ secrets.GIT_PAT }}
+
+      - name: Config Git
+        id: config-git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          echo "date-build=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
+
+      - name: Setup kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Update the image
+        run: |
+          IMAGE_LATEST="${{ inputs.repository_path }}:${{ github.sha }}"
+
+          REPO_PATH="${{ inputs.gitops_path }}"
+          cd ${REPO_PATH}
+          kustomize edit set image deployment-image=${IMAGE_LATEST}
+
+          git add .
+          git commit -m "Update env: [${{ inputs.environment }}] image tag to: [${{ github.sha }}] date: [${{ steps.config-git.outputs.date-build }}]"
+          git push

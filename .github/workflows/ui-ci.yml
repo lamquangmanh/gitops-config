@@ -1,0 +1,80 @@
+name: CI Workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Deployment environment (dev, test, stag, prod)'
+        required: true
+        type: string
+
+jobs:
+  ci-process:
+    name: CI process
+    runs-on: ubuntu-latest
+    # This is option 2: run on the runner of inputs
+    # runs-on: ["${{ inputs.RUNNER }}"]
+
+    # Prevents parallel execution of the same workflow on the same branch.
+    # If a new workflow run starts for the same branch/ref, the previous run is canceled.
+    concurrency:
+      group: ${{ github.workflow }}-ci-process-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 # ensures only the latest commit is pulled (faster performance).
+
+      - name: Setup nodeJs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+      # Retrieves the directory where Yarn stores cached dependencies.
+      # Saves this path in a GitHub Actions output variable.
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: |
+          echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      # Uses GitHub's cache action to store and restore Yarn dependencies.
+      # Cache key is based on: The OS and The yarn.lock file (to detect dependency changes).
+      # The cache prevents unnecessary reinstallation of dependencies in future runs.
+      - name: Cache Yarn Dependencies
+        uses: actions/cache@v4
+        id: yarn-cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      # If the cache wasn't restored, it prints 'cache not hit'
+      - name: Check cache
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: echo 'cache not hit'
+
+      # Installs project dependencies without modifying yarn.lock.
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Runs the linting process (e.g., ESLint or similar tools).
+      # - name: Lint Check
+      #   run: yarn run lint
+
+      # Build the project: Compiles/transpiles the project.
+      - name: Build
+        run: yarn run build
+
+      # Runs unit/integration tests by Jest
+      # - name: Test
+      #   run: yarn test
