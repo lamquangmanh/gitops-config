@@ -9,4 +9,4 @@ resources:
 images:
 - name: deployment-image
   newName: quangmanhlam/user-be-dev
-  newTag: 2203f1db56eca04b68390af05dc3e105260e250b
+  newTag: bc74e378360da731388d3501a9a754b6553f25dd
