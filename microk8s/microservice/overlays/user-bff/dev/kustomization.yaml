@@ -5,7 +5,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - hpa.yaml
-  - sealed-secrets.yaml
+  - secrets.yaml
 images:
   - name: deployment-image
     newName: quangmanhlam/user-bff-dev
