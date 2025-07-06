@@ -11,7 +11,7 @@ spec:
       kind: Rule
       services:
         - name: user-bff-svc # name of Service in app BFF
-          port: 3001 # Port in Cluster that BFF app is running
+          port: 4000 # Port in Cluster that BFF app is running
       # If you use Traefik Middleware to call OPA, add the following lines
       middlewares:
         - name: opa-auth # Name Middleware OPA in Traefik
