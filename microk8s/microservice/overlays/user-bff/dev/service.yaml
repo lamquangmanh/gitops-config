@@ -8,8 +8,8 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 3001 # External port within the cluster
-      targetPort: 3001 # The port your container is listening on
+      port: 4000 # External port within the cluster
+      targetPort: 4000 # The port your container is listening on
   selector:
     app: user-bff-deployment-label
   type: ClusterIP # Expose the service internally within the cluster

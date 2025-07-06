@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: user-bff-dev-deployment
+    name: user-bff-deployment-label
   minReplicas: 1
   maxReplicas: 10
   metrics:

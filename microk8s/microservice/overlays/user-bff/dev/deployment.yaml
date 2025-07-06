@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: user-bff-dev
-  name: user-bff-deployment
+  name: user-bff-dev
   labels:
     app: user-bff-deployment-label
 spec:
