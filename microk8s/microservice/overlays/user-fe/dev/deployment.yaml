@@ -24,8 +24,8 @@ spec:
             - containerPort: 3000
           resources:
             requests:
-              cpu: '64m' # Minimum CPU requested (200 millicores)
-              memory: '128Mi' # Minimum memory requested (256 MiB)
+              cpu: '512m' # Minimum CPU requested (200 millicores)
+              memory: '1Gi' # Minimum memory requested (256 MiB)
             limits:
-              cpu: '2' # Maximum CPU allowed (1024 millicores = 1 CPU)
-              memory: '1Gi' # Maximum memory allowed (1 GiB)
+              cpu: '4' # Maximum CPU allowed (1024 millicores = 1 CPU)
+              memory: '2Gi' # Maximum memory allowed (1 GiB)
