@@ -24,7 +24,7 @@ spec:
           image: deployment-image
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 5001
               protocol: TCP
             - name: grpc
               containerPort: 5000
