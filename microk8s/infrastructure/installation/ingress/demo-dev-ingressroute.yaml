@@ -6,6 +6,7 @@ metadata:
 spec:
   entryPoints:
     - web
+    - websecure
   routes:
     - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
       kind: Rule
