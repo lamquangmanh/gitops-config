@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: user-bff-dev
-  name: user-bff-dev
+  name: user-bff-dev-deployment
   labels:
-    app: user-bff-deployment-label
+    app: user-bff-dev-label
 spec:
   replicas: 1
   # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: user-bff-deployment-label
+      app: user-bff-dev-label
   template:
     metadata:
       labels:
-        app: user-bff-deployment-label
+        app: user-bff-dev-label
     spec:
       hostNetwork: true # Use host networking for the pod to connect postgres and redis
       dnsPolicy: ClusterFirstWithHostNet
