@@ -6,17 +6,17 @@ metadata:
 spec:
   entryPoints:
     - web
-    - websecure
+    # - websecure
   routes:
-    - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
-      kind: Rule
-      services:
-        - name: user-bff-svc # name of Service in app BFF
-          port: 4000 # Port in Cluster that BFF app is running
-      # If you use Traefik Middleware to call OPA, add the following lines
-      middlewares:
-        - name: opa-auth # Name Middleware OPA in Traefik
-          namespace: opa-dev
+    # - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
+    #   kind: Rule
+    #   services:
+    #     - name: user-bff-svc # name of Service in app BFF
+    #       port: 4000 # Port in Cluster that BFF app is running
+    #   # If you use Traefik Middleware to call OPA, add the following lines
+    #   middlewares:
+    #     - name: opa-auth # Name Middleware OPA in Traefik
+    #       namespace: opa-dev
     - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/`)
       kind: Rule
       services:
