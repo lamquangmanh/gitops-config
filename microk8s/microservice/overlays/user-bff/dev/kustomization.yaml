@@ -9,4 +9,4 @@ resources:
 images:
 - name: deployment-image
   newName: quangmanhlam/user-bff-dev
-  newTag: e11e1a8eb024b7243d294ce764f7319ac9c4f477
+  newTag: 81a0b5f220af57ebff3ff084e6cc0c3cfbadc1fd
