@@ -25,10 +25,10 @@ spec:
           ports:
             - name: http
               containerPort: 5001
-              protocol: TCP
+              # protocol: TCP
             - name: grpc
               containerPort: 5000
-              protocol: TCP
+              # protocol: TCP
           envFrom:
             - secretRef:
                 name: user-be-dev-secret
