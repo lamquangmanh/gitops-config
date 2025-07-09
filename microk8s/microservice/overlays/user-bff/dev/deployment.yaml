@@ -17,8 +17,8 @@ spec:
       labels:
         app: user-bff-dev-label
     spec:
-      hostNetwork: true # Use host networking for the pod to connect postgres and redis
-      dnsPolicy: ClusterFirstWithHostNet
+      # hostNetwork: true # Use host networking for the pod to connect postgres and redis
+      # dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: user-bff
           image: deployment-image
