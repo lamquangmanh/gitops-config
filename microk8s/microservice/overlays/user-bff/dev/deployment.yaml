@@ -25,7 +25,7 @@ spec:
           ports:
             - name: http
               containerPort: 4000
-              protocol: TCP
+              # protocol: TCP
           envFrom:
             - secretRef:
                 name: user-bff-dev-secret
