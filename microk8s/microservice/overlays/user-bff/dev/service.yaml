@@ -12,4 +12,4 @@ spec:
       targetPort: 4000 # The port your container is listening on
   selector:
     app: user-bff-dev-deployment
-  type: ClusterIP # Expose the service internally within the cluster
+  # type: ClusterIP # Expose the service internally within the cluster
