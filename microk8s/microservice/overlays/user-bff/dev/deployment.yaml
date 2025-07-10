@@ -23,8 +23,7 @@ spec:
         - name: user-bff
           image: deployment-image
           ports:
-            - name: http
-              containerPort: 4000
+            - containerPort: 4000
               # protocol: TCP
           envFrom:
             - secretRef:
