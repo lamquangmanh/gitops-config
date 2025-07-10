@@ -1,12 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- namespace.yaml
-- deployment.yaml
-- service.yaml
-- hpa.yaml
-- secrets.yaml
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml
+  - hpa.yaml
+  # - secrets.yaml
+  - configmap.yml
 images:
-- name: deployment-image
-  newName: quangmanhlam/user-fe-dev
-  newTag: fcfaea224baf9259c01242053d8e1bf24778e45b
+  - name: deployment-image
+    newName: quangmanhlam/user-fe-dev
+    newTag: f8fb42d78189ba5168d27e1c29ad136541960407

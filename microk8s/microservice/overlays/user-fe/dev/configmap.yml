@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: user-fe-config
+  namespace: user-fe-dev
+data:
+  NEXT_PUBLIC_GRAPHQL_ENDPOINT: 'https://demo-dev.manhlam.name.vn/graphql'
