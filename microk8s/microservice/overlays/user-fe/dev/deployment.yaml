@@ -22,12 +22,12 @@ spec:
           image: deployment-image
           ports:
             - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: user-fe-config
           # envFrom:
-          #   - secretRef:
-          #       name: user-fe-dev-secret
+          #   - configMapRef:
+          #       name: user-fe-config
+          envFrom:
+            - secretRef:
+                name: user-fe-dev-secret
           resources:
             requests:
               cpu: '512m' # Minimum CPU requested (200 millicores)
