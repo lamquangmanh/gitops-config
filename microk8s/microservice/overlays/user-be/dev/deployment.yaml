@@ -5,6 +5,8 @@ metadata:
   name: user-be-dev-deployment
   labels:
     app: user-be-dev-label
+  annotations:
+    secret.reloader.stakater.com/reload: 'user-be-dev-secret'
 spec:
   replicas: 1
   # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
@@ -16,6 +18,8 @@ spec:
     metadata:
       labels:
         app: user-be-dev-label
+      annotations:
+        checksum/secret-user-be: { { .Values.userBeSecretHash } }
     spec:
       hostNetwork: true # Use host networking for the pod to connect postgres and redis
       dnsPolicy: ClusterFirstWithHostNet
