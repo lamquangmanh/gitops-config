@@ -35,33 +35,3 @@ spec:
       prometheusSpec:
         serviceMonitorSelector: {}
         podMonitorSelector: {}
-# apiVersion: helm.toolkit.fluxcd.io/v2beta1
-# kind: HelmRelease
-# metadata:
-#   name: prometheus
-#   namespace: monitoring
-# spec:
-#   install:
-#     crds: CreateReplace
-#   chart:
-#     spec:
-#       chart: kube-prometheus-stack
-#       version: 56.6.0
-#       sourceRef:
-#         kind: HelmRepository
-#         name: prometheus-community
-#         namespace: monitoring
-#   interval: 10m
-#   values:
-#     grafana:
-#       enabled: true
-#       service:
-#         type: ClusterIP
-#       ingress:
-#         enabled: true
-#         hosts: [grafana.manhlam.name.vn]
-#       adminPassword: 'admin123456'
-#     prometheus:
-#       prometheusSpec:
-#         serviceMonitorSelector: {}
-#         podMonitorSelector: {}
