@@ -21,9 +21,9 @@ spec:
         port: 5432
         user: postgres
         password: azQwSxEdcrfVgtb
-        database: mydb
-      extendQueryPath: /etc/queries.yaml
-    extraSecretMounts:
-      - name: custom-queries
-        mountPath: /etc
-        secretName: pg-custom-queries
+        database: postgres
+    #   extendQueryPath: /etc/queries.yaml
+    # extraSecretMounts:
+    #   - name: custom-queries
+    #     mountPath: /etc
+    #     secretName: pg-custom-queries

@@ -1,6 +1,6 @@
 resources:
   - prometheus/helm-release.yaml
-  - prometheus/pg-custom-queries.yaml
+  # - prometheus/pg-custom-queries.yaml
   - postgres/helm-release.yaml
   - redis/helm-release.yaml
   - tempo/helm-release.yaml
