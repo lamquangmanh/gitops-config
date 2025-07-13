@@ -1,4 +1,5 @@
 resources:
+  - repositories/helm-repositories.yaml
   - prometheus/helm-release.yaml
   # - prometheus/pg-custom-queries.yaml
   - postgres/helm-release.yaml
