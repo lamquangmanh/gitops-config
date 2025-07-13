@@ -4,6 +4,8 @@ metadata:
   name: prometheus
   namespace: monitoring
 spec:
+  install:
+    crds: CreateReplace
   chart:
     spec:
       chart: kube-prometheus-stack
