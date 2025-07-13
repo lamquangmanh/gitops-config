@@ -4,8 +4,8 @@ namespace: traefik-ingress-dev
 
 resources:
   - ../../../base/traefik-ingress
-  - ingress.yaml
-  - middleware-opa.yaml
+  # - ingress.yaml
+  # - middleware-opa.yaml
 # patches:
 #   - path: ingress.yaml
 #     target:
