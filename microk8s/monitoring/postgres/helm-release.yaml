@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: postgresql-exporter
+      chart: prometheus-postgres-exporter
       version: 3.1.2
       sourceRef:
         kind: HelmRepository
