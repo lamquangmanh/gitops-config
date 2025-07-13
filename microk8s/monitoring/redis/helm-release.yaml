@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redis-exporter
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: redis-exporter
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: monitoring
+  interval: 5m
+  values:
+    serviceMonitor:
+      enabled: true
+    redisAddress: 'redis://192.168.1.10:6379'
+    redisPassword: 'zaqwsxcdeRFVvFrTgb'

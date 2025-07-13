@@ -1,0 +1,15 @@
+pg_database:
+  query: 'SELECT datname, numbackends, xact_commit, xact_rollback FROM pg_stat_database'
+  metrics:
+    - datname:
+        usage: 'LABEL'
+        description: 'Database name'
+    - numbackends:
+        usage: 'GAUGE'
+        description: 'Number of active backends'
+    - xact_commit:
+        usage: 'COUNTER'
+        description: 'Number of transactions committed'
+    - xact_rollback:
+        usage: 'COUNTER'
+        description: 'Number of transactions rolled back'

@@ -1,0 +1,13 @@
+resources:
+  - prometheus-release.yaml
+
+patches:
+  - target:
+      kind: Prometheus
+    patch: |
+      apiVersion: monitoring.coreos.com/v1
+      kind: Prometheus
+      metadata:
+        name: k8s
+      spec:
+        serviceMonitorSelector: {}
