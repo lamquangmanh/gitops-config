@@ -1,6 +1,6 @@
 resources:
   - repositories/helm-repositories.yaml
-  # - grafana/helm-release.yaml
+  - grafana/helm-release.yaml
   - prometheus/helm-release.yaml
   - postgres/helm-release.yaml
   - redis/helm-release.yaml
