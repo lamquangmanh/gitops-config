@@ -37,31 +37,21 @@ spec:
         name: grafana
         namespace: monitoring
   values:
-    mode: 'singleBinary'
+    mode: 'singleBinary' # ⬅️ Force simple mode
     loki:
       auth_enabled: false
-      commonConfig:
-        replication_factor: 1
       storage:
-        type: filesystem
-      compactor:
-        retention_enabled: true
+        type: 'filesystem'
+    singleBinary:
+      replicas: 1
+      persistence:
+        enabled: true
+        size: 5Gi
+        storageClass: 'standard' # Adjust for your cluster (e.g. "local-path" for K3s)
     gateway:
-      enabled: false # Disable if not needed
-    read:
-      replicas: 1
-    write:
-      replicas: 1
-    backend:
-      replicas: 1
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        cpu: 500m
-        memory: 512Mi
-    persistence:
-      enabled: true
-      size: 5Gi
-      storageClass: standard
+      enabled: false # optional, reduce footprint
+    monitoring:
+      selfMonitoring:
+        enabled: false
+      dashboards:
+        enabled: false
