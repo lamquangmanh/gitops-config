@@ -88,6 +88,9 @@ spec:
             type: tempo
             access: proxy
             url: http://tempo.monitoring.svc.cluster.local:3100
+          - name: Prometheus
+            type: prometheus
+            url: http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
     sidecar:
       dashboards:
         enabled: true
@@ -106,4 +109,28 @@ spec:
         postgresql:
           gnetId: 9628
           revision: 1
+          datasource: Prometheus
+
+        # Kubernetes Cluster Monitoring
+        kubernetes-cluster:
+          gnetId: 315
+          revision: 3
+          datasource: Prometheus
+
+        # Kubernetes Nodes
+        kubernetes-nodes:
+          gnetId: 1860
+          revision: 21
+          datasource: Prometheus
+
+        # Kubernetes Pods
+        kubernetes-pods:
+          gnetId: 8563
+          revision: 1
+          datasource: Prometheus
+
+        # Kubelet / Node Exporter (if installed)
+        node-exporter-full:
+          gnetId: 1860
+          revision: 21
           datasource: Prometheus
