@@ -1,7 +1,7 @@
 resources:
   - repositories/helm-repositories.yaml
   - prometheus/helm-release.yaml
-  - grafana/helm-release.yaml
+  # - grafana/helm-release.yaml
   - postgres/helm-release.yaml
   - redis/helm-release.yaml
   - tempo/helm-release.yaml

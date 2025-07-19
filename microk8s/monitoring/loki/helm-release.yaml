@@ -21,6 +21,45 @@
 #         enabled: true
 #         size: 10Gi
 
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: loki
+#   namespace: monitoring
+# spec:
+#   interval: 5m
+#   install:
+#     disableTests: true
+#   upgrade:
+#     disableTests: true
+#   chart:
+#     spec:
+#       chart: loki
+#       version: 5.41.4
+#       sourceRef:
+#         kind: HelmRepository
+#         name: grafana
+#         namespace: monitoring
+#   values:
+#     mode: 'singleBinary' # ⬅️ Force simple mode
+#     loki:
+#       auth_enabled: false
+#       storage:
+#         type: 'filesystem'
+#     singleBinary:
+#       replicas: 1
+#       persistence:
+#         enabled: true
+#         size: 5Gi
+#         storageClass: 'standard' # Adjust for your cluster (e.g. "local-path" for K3s)
+#     gateway:
+#       enabled: false # optional, reduce footprint
+#     monitoring:
+#       selfMonitoring:
+#         enabled: false
+#       dashboards:
+#         enabled: false
+
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -41,7 +80,7 @@ spec:
         name: grafana
         namespace: monitoring
   values:
-    mode: 'singleBinary' # ⬅️ Force simple mode
+    mode: 'singleBinary'
     loki:
       auth_enabled: false
       storage:
@@ -51,9 +90,9 @@ spec:
       persistence:
         enabled: true
         size: 5Gi
-        storageClass: 'standard' # Adjust for your cluster (e.g. "local-path" for K3s)
+        storageClass: 'standard' # Adjust as needed
     gateway:
-      enabled: false # optional, reduce footprint
+      enabled: false
     monitoring:
       selfMonitoring:
         enabled: false
