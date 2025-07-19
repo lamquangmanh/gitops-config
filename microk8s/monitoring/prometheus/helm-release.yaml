@@ -16,20 +16,20 @@ spec:
         namespace: monitoring
   interval: 10m
   values:
-    grafana:
-      enabled: true
-      adminPassword: 'admin123456'
-      service:
-        type: ClusterIP
-      ingress:
-        enabled: true
-        annotations:
-          nginx.ingress.kubernetes.io/rewrite-target: /
-          kubernetes.io/ingress.class: nginx
-        path: /
-        pathType: Prefix
-        hosts:
-          - grafana.manhlam.name.vn
+    # grafana:
+    #   enabled: true
+    #   adminPassword: 'admin123456'
+    #   service:
+    #     type: ClusterIP
+    #   ingress:
+    #     enabled: true
+    #     annotations:
+    #       nginx.ingress.kubernetes.io/rewrite-target: /
+    #       kubernetes.io/ingress.class: nginx
+    #     path: /
+    #     pathType: Prefix
+    #     hosts:
+    #       - grafana.manhlam.name.vn
 
     prometheus:
       prometheusSpec:

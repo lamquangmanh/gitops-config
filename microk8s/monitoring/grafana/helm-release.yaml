@@ -14,7 +14,6 @@ spec:
         name: grafana
         namespace: monitoring
   values:
-    # adminPassword: admin123456
     grafana:
       enabled: true
       adminPassword: 'admin123456'
@@ -36,9 +35,9 @@ spec:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: Loki
-            type: loki
-            url: http://loki.monitoring.svc.cluster.local:3100
+          # - name: Loki
+          #   type: loki
+          #   url: http://loki.monitoring.svc.cluster.local:3100
           - name: Tempo
             type: tempo
             url: http://tempo.monitoring.svc.cluster.local:3100
