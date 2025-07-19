@@ -88,3 +88,22 @@ spec:
             type: tempo
             access: proxy
             url: http://tempo.monitoring.svc.cluster.local:3100
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        searchNamespace: ALL
+    dashboards:
+      default:
+        prometheus:
+          gnetId: 2
+          revision: 2
+          datasource: Prometheus
+        redis:
+          gnetId: 11835
+          revision: 1
+          datasource: Prometheus
+        postgresql:
+          gnetId: 9628
+          revision: 1
+          datasource: Prometheus
