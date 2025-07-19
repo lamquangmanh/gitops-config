@@ -42,3 +42,5 @@ spec:
         value: 'zaqwsxcdeRFVvFrTgb'
     serviceMonitor:
       enabled: true
+      additionalLabels:
+        release: prometheus
