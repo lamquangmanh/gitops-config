@@ -28,6 +28,10 @@ metadata:
   namespace: monitoring
 spec:
   interval: 5m
+  install:
+    disableTests: true
+  upgrade:
+    disableTests: true
   chart:
     spec:
       chart: loki
