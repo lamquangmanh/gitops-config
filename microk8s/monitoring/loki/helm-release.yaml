@@ -1,30 +1,22 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: tempo
+  name: loki
   namespace: monitoring
 spec:
   interval: 5m
   chart:
     spec:
-      chart: tempo
-      version: 1.8.0
+      chart: loki
+      version: 5.41.4
       sourceRef:
         kind: HelmRepository
         name: grafana
         namespace: monitoring
+        # namespace: flux-system
   values:
-    serviceMonitor:
-      enabled: true
-    tempo:
-      metricsGenerator:
-        enabled: true
+    isDefault: true
+    loki:
       persistence:
         enabled: true
         size: 10Gi
-    traces:
-      otlp:
-        http:
-          enabled: true
-        grpc:
-          enabled: true
