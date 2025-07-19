@@ -36,7 +36,9 @@ spec:
         namespace: monitoring
   values:
     env:
-      redis_addr: 'redis://192.168.1.10:6379'
-      redis_password: 'zaqwsxcdeRFVvFrTgb'
+      - name: REDIS_ADDR
+        value: 'redis://192.168.1.10:6379'
+      - name: REDIS_PASSWORD
+        value: 'zaqwsxcdeRFVvFrTgb'
     serviceMonitor:
       enabled: true
