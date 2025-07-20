@@ -123,13 +123,14 @@ spec:
     mode: 'singleBinary'
     loki:
       auth_enabled: false
-      replication_factor: 1
+      replicas: 2
+      replication_factor: 2
       storage:
         type: 'filesystem'
       persistence:
         enabled: true
         size: 10Gi
-        storageClass: microk8s-hostpath # 👈 đổi tên storageClass phù hợp
+        storageClass: microk8s-hostpath
     singleBinary:
       replicas: 1
       persistence:
