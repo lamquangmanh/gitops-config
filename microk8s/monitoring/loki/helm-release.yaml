@@ -95,6 +95,7 @@ spec:
       enabled: false
     monitoring:
       selfMonitoring:
-        enabled: false
+        enabled: true
+        selfMonitoringOnly: true
       dashboards:
         enabled: false
