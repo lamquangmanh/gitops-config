@@ -123,6 +123,7 @@ spec:
     mode: 'singleBinary'
     loki:
       auth_enabled: false
+      replication_factor: 1
       storage:
         type: 'filesystem'
       persistence:
@@ -139,7 +140,7 @@ spec:
       enabled: false
     monitoring:
       selfMonitoring:
-        enabled: true
+        enabled: false
         selfMonitoringOnly: true
       dashboards:
         enabled: false
