@@ -83,7 +83,8 @@ spec:
           - name: Loki
             type: loki
             access: proxy
-            url: http://loki.monitoring.svc.cluster.local:3100
+            url: http://10.1.41.183:3100
+            # url: http://loki.monitoring.svc.cluster.local:3100
           - name: Tempo
             type: tempo
             access: proxy
