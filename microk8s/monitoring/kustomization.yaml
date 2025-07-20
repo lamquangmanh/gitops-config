@@ -5,4 +5,4 @@ resources:
   - postgres/helm-release.yaml
   - redis/helm-release.yaml
   - tempo/helm-release.yaml
-  - loki/helm-release.yaml
+  # - loki/helm-release.yaml
