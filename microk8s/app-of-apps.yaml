@@ -94,22 +94,28 @@ spec:
     chart: minio
     helm:
       values: |-
-        accessKey: minioadminaccesskey
-        secretKey: minioadminsecretkey
-        replicas: 1
-        console:
-          enabled: true
+        accessKey: minioadmin
+        secretKey: minioadmin123
         persistence:
           enabled: true
           size: 256Gi
           storageClass: standard
+        service:
+          type: ClusterIP
+        console:
+          enabled: true
         ingress:
           enabled: true
-          hostname: minio.manhlam.name.vn
-          annotations:
-            kubernetes.io/ingress.class: nginx
+          ingressClassName: traefik
+          hosts:
+            - host: minio.manhlam.name.vn
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
           tls:
-            enabled: false
+            - hosts:
+                - minio.manhlam.name.vn
+              secretName: minio-tls
   destination:
     server: https://kubernetes.default.svc
     namespace: minio
