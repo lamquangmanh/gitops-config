@@ -107,15 +107,14 @@ spec:
         ingress:
           enabled: true
           ingressClassName: traefik
+          annotations:
+            kubernetes.io/ingress.class: traefik
           hosts:
-            - host: minio.manhlam.name.vn
-              paths:
-                - path: /
-                  pathType: ImplementationSpecific
+            - minio.manhlam.name.vn
           tls:
-            - hosts:
+            - secretName: minio-tls
+              hosts:
                 - minio.manhlam.name.vn
-              secretName: minio-tls
   destination:
     server: https://kubernetes.default.svc
     namespace: minio
