@@ -79,3 +79,43 @@ spec:
     automated:
       prune: true
       selfHeal: true
+---
+# monitoring/minio/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://charts.min.io/' # Helm chart repository
+    targetRevision: 'latest'
+    chart: minio
+    helm:
+      values: |-
+        accessKey: minioadminaccesskey
+        secretKey: minioadminsecretkey
+        replicas: 1
+        console:
+          enabled: true
+        persistence:
+          enabled: true
+          size: 256Gi
+          storageClass: standard
+        ingress:
+          enabled: true
+          hostname: minio.manhlam.name.vn
+          annotations:
+            kubernetes.io/ingress.class: nginx
+          tls:
+            enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
