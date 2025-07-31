@@ -90,7 +90,7 @@ spec:
   project: default
   source:
     repoURL: 'https://charts.min.io/' # Helm chart repository
-    targetRevision: 'latest'
+    targetRevision: '5.4.0'
     chart: minio
     helm:
       values: |-
