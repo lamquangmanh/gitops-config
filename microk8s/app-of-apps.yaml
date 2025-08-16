@@ -80,47 +80,47 @@ spec:
       prune: true
       selfHeal: true
 ---
-# monitoring/minio/application.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: minio
-  namespace: argocd
-spec:
-  project: default
-  source:
-    repoURL: 'https://charts.min.io/' # Helm chart repository
-    targetRevision: '5.4.0'
-    chart: minio
-    helm:
-      values: |-
-        accessKey: minioadmin
-        secretKey: minioadmin123
-        persistence:
-          enabled: true
-          size: 256Gi
-          storageClass: standard
-        service:
-          type: ClusterIP
-        console:
-          enabled: true
-        ingress:
-          enabled: true
-          ingressClassName: traefik
-          annotations:
-            kubernetes.io/ingress.class: traefik
-          hosts:
-            - minio.manhlam.name.vn
-          tls:
-            - secretName: minio-tls
-              hosts:
-                - minio.manhlam.name.vn
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: minio
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+# # monitoring/minio/application.yaml
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: minio
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: 'https://charts.min.io/' # Helm chart repository
+#     targetRevision: '5.4.0'
+#     chart: minio
+#     helm:
+#       values: |-
+#         accessKey: minioadmin
+#         secretKey: minioadmin123
+#         persistence:
+#           enabled: true
+#           size: 256Gi
+#           storageClass: standard
+#         service:
+#           type: ClusterIP
+#         console:
+#           enabled: true
+#         ingress:
+#           enabled: true
+#           ingressClassName: traefik
+#           annotations:
+#             kubernetes.io/ingress.class: traefik
+#           hosts:
+#             - minio.manhlam.name.vn
+#           tls:
+#             - secretName: minio-tls
+#               hosts:
+#                 - minio.manhlam.name.vn
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: minio
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true

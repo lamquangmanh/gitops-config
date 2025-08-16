@@ -1,6 +1,0 @@
-resources:
-  - namespace.yaml
-  - account.yaml
-  - deployment.yaml
-  - service.yaml
-  - hpa.yaml
