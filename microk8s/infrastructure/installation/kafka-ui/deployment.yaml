@@ -20,6 +20,6 @@ spec:
             - containerPort: 8080
           env:
             - name: KAFKA_CLUSTERS_0_NAME
-              value: 'local'
+              value: 'external'
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: 'kafka:9092'
+              value: '192.168.1.9:9092'
