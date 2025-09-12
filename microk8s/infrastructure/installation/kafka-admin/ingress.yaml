@@ -15,4 +15,4 @@ spec:
               service:
                 name: kafka-ui
                 port:
-                  number: 9099
+                  number: 80

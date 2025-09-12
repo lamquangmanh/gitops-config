@@ -83,7 +83,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kafka-ui
-  namespace: kafka-ui
+  namespace: argocd
 spec:
   project: default
   source:
@@ -94,7 +94,7 @@ spec:
       values: |
         service:
           type: ClusterIP
-          port: 9099
+          port: 80
         envs:
           - name: KAFKA_CLUSTERS_0_NAME
             value: local
