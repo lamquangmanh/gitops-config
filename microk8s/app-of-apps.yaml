@@ -95,7 +95,6 @@ spec:
         service:
           type: ClusterIP
           port: 9099
-        containerPort: 9099
         envs:
           - name: KAFKA_CLUSTERS_0_NAME
             value: local
