@@ -83,7 +83,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kafka-ui
-  namespace: argocd
+  namespace: kafka-ui
 spec:
   project: default
   source:
