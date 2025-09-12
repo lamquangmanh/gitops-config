@@ -89,7 +89,7 @@ spec:
   source:
     repoURL: https://provectus.github.io/kafka-ui-charts
     chart: kafka-ui
-    targetRevision: 0.7.5 # latest version
+    targetRevision: 0.7.5
     helm:
       values: |
         service:
