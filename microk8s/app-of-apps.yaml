@@ -96,10 +96,9 @@ spec:
           type: ClusterIP
           port: 80
         envs:
-          - name: KAFKA_CLUSTERS_0_NAME
-            value: local
-          - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-            value: PLAINTEXT://kafka:9092
+          config:
+            KAFKA_CLUSTERS_0_NAME: local
+            KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: PLAINTEXT://kafka:9092
   destination:
     server: https://kubernetes.default.svc
     namespace: kafka-ui
