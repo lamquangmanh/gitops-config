@@ -22,4 +22,4 @@ spec:
             - name: KAFKA_CLUSTERS_0_NAME
               value: 'external'
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: '192.168.1.9:9092'
+              value: 'kafka.manhlam.name.vn:9092'
