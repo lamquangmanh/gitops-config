@@ -8,6 +8,12 @@ services:
       - '7233:7233' # Temporal frontend gRPC
     environment:
       - TEMPORAL_CLI_ADDRESS=temporal:7233
+      - DB=postgresql
+      - DB_HOST=temporal-db
+      - DB_PORT=5432
+      - DB_USER=temporal
+      - DB_PWD=temporal
+      - DB_NAME=temporal
     depends_on:
       - temporal-db
 
