@@ -71,12 +71,12 @@ services:
       - temporal
     environment:
       - TEMPORAL_ADDRESS=temporal:7233
-      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000,https://orkes.manhlam.name.vn
     image: temporalio/ui:${TEMPORAL_UI_VERSION}
     networks:
       - temporal-network
     ports:
-      - 8080:8080
+      - '${TEMPORAL_UI_PORT}:8080'
 networks:
   temporal-network:
     driver: bridge
