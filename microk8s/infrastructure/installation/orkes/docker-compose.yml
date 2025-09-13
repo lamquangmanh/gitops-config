@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  temporal:
+    image: temporalio/auto-setup:1.21.1
+    container_name: temporal
+    ports:
+      - '7233:7233' # Temporal frontend gRPC
+    environment:
+      - TEMPORAL_CLI_ADDRESS=temporal:7233
+    depends_on:
+      - temporal-db
+
+  temporal-db:
+    image: postgres:15
+    container_name: temporal-db
+    environment:
+      POSTGRES_USER: temporal
+      POSTGRES_PASSWORD: temporal
+      POSTGRES_DB: temporal
+    ports:
+      - '15432:5432'
+
+  temporal-web:
+    image: temporalio/ui:latest
+    container_name: temporal-web
+    ports:
+      - '8088:8080' # Web UI → đổi từ 8080 sang 8088
+    depends_on:
+      - temporal
+
+  # Optional: Prometheus and Grafana for monitoring. we'll explore this on prometheus and grafana in kubernetes setup
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: prometheus
+  #   ports:
+  #     - '9095:9090' # Prometheus UI → đổi từ 9090 sang 9095
+  #   volumes:
+  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   container_name: grafana
+  #   ports:
+  #     - '8086:8085' # Grafana → đổi từ 8085 sang 8086
