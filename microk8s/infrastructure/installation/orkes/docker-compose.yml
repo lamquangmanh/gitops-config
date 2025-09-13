@@ -1,51 +1,43 @@
 version: '3.8'
+
 services:
   temporal-db:
     image: postgres:15
+    container_name: temporal-db
     environment:
-      - POSTGRES_USER=temporal
-      - POSTGRES_PASSWORD=temporal
-      - POSTGRES_DB=temporal
+      POSTGRES_USER: temporal
+      POSTGRES_PASSWORD: temporal
+      POSTGRES_DB: temporal
     ports:
       - '15432:5432'
     volumes:
-      - temporal_pgdata:/var/lib/postgresql/data
+      - temporal-db-data:/var/lib/postgresql/data
 
   temporal:
     image: temporalio/auto-setup:1.21.1
-    environment:
-      - DB=postgresql
-      - DB_HOST=temporal-db
-      - DB_PORT=5432
-      - DB_USER=temporal
-      - DB_PWD=temporal
-      - DB_NAME=temporal
+    container_name: temporal
     depends_on:
       - temporal-db
+    environment:
+      DB: postgresql
+      DB_PORT: 5432
+      POSTGRES_USER: temporal
+      POSTGRES_PWD: temporal
+      POSTGRES_SEEDS: temporal-db
+      DYNAMIC_CONFIG_FILE_PATH: config/dynamicconfig/development.yaml
+    ports:
+      - '7233:7233' # Temporal Frontend service
 
   temporal-web:
     image: temporalio/ui:latest
-    ports:
-      - '8088:8080'
-    environment:
-      - TEMPORAL_ADDRESS=temporal:7233
+    container_name: temporal-web
     depends_on:
       - temporal
-
-  # Optional: Prometheus and Grafana for monitoring. we'll explore this on prometheus and grafana in kubernetes setup
-  # prometheus:
-  #   image: prom/prometheus:latest
-  #   container_name: prometheus
-  #   ports:
-  #     - '9095:9090' # Prometheus UI → đổi từ 9090 sang 9095
-  #   volumes:
-  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-
-  # grafana:
-  #   image: grafana/grafana:latest
-  #   container_name: grafana
-  #   ports:
-  #     - '8086:8085' # Grafana → đổi từ 8085 sang 8086
+    environment:
+      TEMPORAL_ADDRESS: temporal:7233
+      TEMPORAL_CORS_ORIGINS: http://localhost:8088
+    ports:
+      - '8088:8080' # Web UI
 
 volumes:
-  temporal_pgdata:
+  temporal-db-data:
