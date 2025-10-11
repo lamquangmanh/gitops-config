@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       # This will create names like dev, test, stage
-      name: '{{env}}'
+      name: '{{app}}-{{env}}'
     spec:
       project: default
       source:
