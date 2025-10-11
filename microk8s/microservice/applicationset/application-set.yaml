@@ -19,19 +19,19 @@ spec:
                 # - env: stage
   template:
     metadata:
-      # This will create names like frontend-dev, backend-prod
-      name: '{{app}}-{{env}}'
+      # This will create names like dev, test, stage
+      name: '{{env}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/lamquangmanh/gitops-config.git
         targetRevision: main
-        # This points to the folder in your Git repo (e.g., microk8s/microservice/overlays/frontend/dev)
-        path: microk8s/microservice/overlays/{{app}}/{{env}}
+        # This points to the folder in your Git repo (e.g., microk8s/microservice/apps/user-fe/overlays/dev)
+        path: microk8s/microservice/apps/{{app}}/overlays/{{env}}
       destination:
         server: https://kubernetes.default.svc
-        # Dynamic namespace, e.g., frontend-dev, backend-prod
-        namespace: '{{app}}-{{env}}'
+        # Dynamic namespace, e.g., dev, test, stage
+        namespace: '{{env}}'
       syncPolicy:
         automated:
           prune: true

@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: dev
+
+resources:
+  - ./../../base
+
+# If you have any patches to apply to the base resources, you can specify them here.
+# patches:
+#   - path: deployment-patch.yml
+#     target:
+#       kind: Deployment
+
+images:
+  - name: deployment-image
+    newName: quangmanhlam/user-be-dev
+    newTag: cc4d31e365c5427a3fa6fca214f308c3c451dbc5

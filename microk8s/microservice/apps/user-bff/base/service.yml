@@ -1,0 +1,18 @@
+# Kubernetes Documentation: https://kubernetes.io/docs/concepts/services-networking/service/
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-bff-svc
+  labels:
+    app: user-bff-svc-label
+spec:
+  selector:
+    app: user-bff-deployment-label
+  ports:
+    - name: graphql
+      port: 4000 # External port within the cluster
+      targetPort: 4000 # The port your container is listening on
+
+
+  # type: ClusterIP # Expose the service internally within the cluster

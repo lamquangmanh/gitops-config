@@ -25,6 +25,7 @@ services:
       - internal
 
   server-1:
+    restart: unless-stopped
     container_name: conductor
     build:
       context: ../

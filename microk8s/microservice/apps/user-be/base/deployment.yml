@@ -1,0 +1,60 @@
+# Kubernetes Documentation : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-be-deployment
+  labels:
+    app: user-be-deployment-label
+spec:
+  replicas: 1
+  # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: user-be-deployment-label
+  template:
+    metadata:
+      labels:
+        app: user-be-deployment-label
+    spec:
+      # hostNetwork: true # Use host networking for the pod to connect postgres and redis
+      # dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: user-be-deployment
+          image: deployment-image
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 5001
+            - name: grpc
+              containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: user-be-secret
+          resources:
+            requests:
+              cpu: '512m' # Minimum CPU requested (200 millicores)
+              memory: '1Gi' # Minimum memory requested (256 MiB)
+            limits:
+              cpu: '4' # Maximum CPU allowed (1024 millicores = 1 CPU)
+              memory: '2Gi' # Maximum memory allowed (2 GB)
+          livenessProbe: # a set of probes to manage and monitor the health of containers running in a pod.
+            httpGet:
+              path: /healthz
+              port: 5001
+            initialDelaySeconds: 5
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5001
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 5001
+            failureThreshold: 30
+            periodSeconds: 10

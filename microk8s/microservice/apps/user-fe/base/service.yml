@@ -1,0 +1,18 @@
+# Kubernetes Documentation: https://kubernetes.io/docs/concepts/services-networking/service/
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-fe-svc
+  labels:
+    app: user-fe-svc-label
+spec:
+  selector:
+    app: user-fe-deployment-label
+  ports:
+    - name: http
+      port: 3000 # External port within the cluster
+      targetPort: 3000 # The port your container is listening on
+
+
+  # type: ClusterIP # Expose the service internally within the cluster
