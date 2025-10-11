@@ -3,7 +3,8 @@ kind: Kustomization
 namespace: dev
 
 resources:
-- ./../../base
+  - ./../../base
+  - secrets.yaml
 
 # If you have any patches to apply to the base resources, you can specify them here.
 # patches:
@@ -12,6 +13,6 @@ resources:
 #       kind: Deployment
 
 images:
-- name: deployment-image
-  newName: quangmanhlam/user-fe-dev
-  newTag: 4153080e95676e84d86beaa9c142a47c0a56475b
+  - name: deployment-image
+    newName: quangmanhlam/user-fe-dev
+    newTag: 4153080e95676e84d86beaa9c142a47c0a56475b
