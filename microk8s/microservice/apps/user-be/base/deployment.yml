@@ -28,9 +28,12 @@ spec:
               containerPort: 5001
             - name: grpc
               containerPort: 5000
+          # envFrom:
+          #   - secretRef:
+          #       name: user-be-secret
           envFrom:
-            - secretRef:
-                name: user-be-secret
+            - configMapRef:
+                name: user-be-configmap
           resources:
             requests:
               cpu: '512m' # Minimum CPU requested (200 millicores)

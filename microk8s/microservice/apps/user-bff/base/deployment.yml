@@ -26,9 +26,12 @@ spec:
           ports:
             - name: graphql
               containerPort: 4000
+          # envFrom:
+          #   - secretRef:
+          #       name: user-bff-secret
           envFrom:
-            - secretRef:
-                name: user-bff-secret
+            - configMapRef:
+                name: user-bff-configmap
           resources:
             requests:
               cpu: '512m' # Minimum CPU requested (200 millicores)

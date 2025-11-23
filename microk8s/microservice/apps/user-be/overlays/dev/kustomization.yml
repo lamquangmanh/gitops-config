@@ -5,6 +5,7 @@ namespace: dev
 resources:
   - ./../../base
   - secrets.yaml
+  - configmap.yaml
 
 # If you have any patches to apply to the base resources, you can specify them here.
 # patches:
