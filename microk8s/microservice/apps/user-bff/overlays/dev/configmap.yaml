@@ -6,8 +6,8 @@ metadata:
 data:
   NODE_ENV: development
   PORT: '4000'
-  BE_HTTP_URL: 'http://user-be-svc.user-be-dev.svc.cluster.local:5001'
-  BE_GRPC_URL: 'user-be-svc.user-be-dev.svc.cluster.local:5000'
+  BE_HTTP_URL: 'http://user-be-svc.dev.svc.cluster.local:5001'
+  BE_GRPC_URL: 'user-be-svc.dev.svc.cluster.local:5000'
   GRAPHQL_PLAYGROUND_ENABLED: 'false'
   JWT_SECRET: 'zaqwsxcdeRFVvFrTgb'
   REDIS_HOST: 'redis-external'
