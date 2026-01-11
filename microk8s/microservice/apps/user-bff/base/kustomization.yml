@@ -6,5 +6,5 @@ kind: Kustomization
 resources:
   - deployment.yml
   - service.yml
-  - hpa.yaml
+  # - hpa.yaml
   - redis-external-service.yml
