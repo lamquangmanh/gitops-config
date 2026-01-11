@@ -17,8 +17,8 @@ spec:
       labels:
         app: user-be-deployment-label
     spec:
-      # hostNetwork: true # Use host networking for the pod to connect postgres and redis
-      # dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true # Use host networking for the pod to connect postgres and redis
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: user-be-deployment
           image: deployment-image
