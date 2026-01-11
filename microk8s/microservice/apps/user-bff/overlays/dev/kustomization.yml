@@ -3,8 +3,8 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - configmap.yaml
-  - ./../../base
+- configmap.yaml
+- ./../../base
 
 # If you have any patches to apply to the base resources, you can specify them here.
 # patches:
@@ -13,6 +13,6 @@ resources:
 #       kind: Deployment
 
 images:
-  - name: deployment-image
-    newName: quangmanhlam/user-bff-dev
-    newTag: 41345297152c824fb37d82368ac68df6dacd46a8
+- name: deployment-image
+  newName: quangmanhlam/user-bff-dev
+  newTag: c8b43081adb5fca3033c22dc22584b3af3c46951
