@@ -4,6 +4,8 @@ namespace: dev
 
 resources:
   - configmap.yaml
+  - postgres-external-service.yml
+  - redis-external-service.yml
   - ./../../base
 
 # If you have any patches to apply to the base resources, you can specify them here.
