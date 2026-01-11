@@ -41,23 +41,23 @@ spec:
             limits:
               cpu: '4' # Maximum CPU allowed (1024 millicores = 1 CPU)
               memory: '2Gi' # Maximum memory allowed (2 GB)
-          livenessProbe: # a set of probes to manage and monitor the health of containers running in a pod.
-            httpGet:
-              path: /healthz
-              port: 4000
-            initialDelaySeconds: 5
-            periodSeconds: 30
-            failureThreshold: 3
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: 4000
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /healthz
-              port: 4000
-            failureThreshold: 30
-            periodSeconds: 10
+          # livenessProbe: # a set of probes to manage and monitor the health of containers running in a pod.
+          #   httpGet:
+          #     path: /healthz
+          #     port: 4000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 30
+          #   failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 4000
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          #   failureThreshold: 3
+          # startupProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 4000
+          #   failureThreshold: 30
+          #   periodSeconds: 10
