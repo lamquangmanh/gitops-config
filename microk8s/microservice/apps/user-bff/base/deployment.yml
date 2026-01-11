@@ -19,6 +19,8 @@ spec:
     spec:
       # hostNetwork: true # Use host networking for the pod to connect postgres and redis
       # dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true # Use host networking for the pod to connect postgres and redis
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: user-bff-deployment
           image: deployment-image
