@@ -8,7 +8,7 @@ spec:
     - web
     - websecure
   routes:
-    # Route cho GraphQL API - phải đặt trước vì PathPrefix có priority cao hơn
+    # Route cho GraphQL API - set before PathPrefix has priority higher than catch all
     - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
       kind: Rule
       services:
