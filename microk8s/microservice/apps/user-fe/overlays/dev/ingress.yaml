@@ -8,12 +8,15 @@ spec:
     - web
     - websecure
   routes:
+    # Route cho GraphQL API - phải đặt trước vì PathPrefix có priority cao hơn
+    - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
+      kind: Rule
+      services:
+        - name: user-bff-svc
+          port: 4000
+    # Route cho frontend - catch all
     - match: Host(`demo-dev.manhlam.name.vn`)
       kind: Rule
       services:
         - name: user-fe-svc
           port: 3000
-  # Nếu dùng Cloudflare SSL, không cần tls section
-  # Nếu cần Let's Encrypt, uncomment và config certResolver
-  # tls:
-  #   certResolver: letsencrypt
