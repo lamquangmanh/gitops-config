@@ -4,6 +4,7 @@ kind: Service
 metadata:
   name: redis-external
 spec:
+  clusterIP: None
   ports:
     - protocol: TCP
       port: 6379
