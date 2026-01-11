@@ -26,9 +26,12 @@ spec:
           ports:
             - name: http
               containerPort: 3000
+          # envFrom:
+          #   - secretRef:
+          #       name: user-fe-secret
           envFrom:
-            - secretRef:
-                name: user-fe-secret
+            - configMapRef:
+                name: user-fe-configmap
           resources:
             requests:
               cpu: '512m' # Minimum CPU requested (200 millicores)
