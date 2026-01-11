@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-external
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: postgres-external
+subsets:
+  - addresses:
+      - ip: 192.168.1.39
+    ports:
+      - port: 5432

@@ -7,3 +7,4 @@ resources:
   - deployment.yml
   - service.yml
   - hpa.yaml
+  - redis-external-service.yml

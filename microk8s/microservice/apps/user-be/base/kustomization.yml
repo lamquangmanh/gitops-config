@@ -7,3 +7,5 @@ resources:
   - deployment.yml
   - service.yml
   - hpa.yaml
+  - postgres-external-service.yml
+  - redis-external-service.yml
