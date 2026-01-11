@@ -3,9 +3,9 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - ./../../base
-  - configmap.yaml
-  - ingress.yaml
+- ./../../base
+- configmap.yaml
+- ingress.yaml
   # - secrets.yaml
 
 # If you have any patches to apply to the base resources, you can specify them here.
@@ -15,6 +15,6 @@ resources:
 #       kind: Deployment
 
 images:
-  - name: deployment-image
-    newName: quangmanhlam/user-fe-dev
-    newTag: 4153080e95676e84d86beaa9c142a47c0a56475b
+- name: deployment-image
+  newName: quangmanhlam/user-fe-dev
+  newTag: 97f459b0a1b80171a1581f5ba82ab37d387d126e
