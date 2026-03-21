@@ -17,4 +17,4 @@ resources:
 images:
 - name: deployment-image
   newName: quangmanhlam/user-fe-dev
-  newTag: fd54c64a88eb89195f994c2629ddf2849cb4fd7e
+  newTag: bc7f7ccbe321c52a3ab9dcbb3b54693393b06200
