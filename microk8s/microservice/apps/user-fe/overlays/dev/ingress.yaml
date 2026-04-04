@@ -11,12 +11,14 @@ spec:
     # Route cho GraphQL API - set before PathPrefix has priority higher than catch all
     - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/graphql`)
       kind: Rule
+      priority: 100
       services:
         - name: user-bff-svc
           port: 4000
     # Route cho frontend - catch all
-    - match: Host(`demo-dev.manhlam.name.vn`)
+    - match: Host(`demo-dev.manhlam.name.vn`) && PathPrefix(`/`)
       kind: Rule
+      priority: 1
       services:
         - name: user-fe-svc
           port: 3000
