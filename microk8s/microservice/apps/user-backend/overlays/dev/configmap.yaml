@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-backend-configmap
+  namespace: dev
+data:
+  # This key must match Deployment volume.items[].key and volumeMount subPath.
+  config.yml: |
+    app:
+      name: user-backend
+      environment: development
+      jwt_secret: zaqwsxcdeRFVvFrTgb
+      jwt_expiration: 86400 # 24 hours in seconds
+
+    grpc:
+      port: 5000
+
+    http:
+      port: 5001
+
+    database:
+      host: postgres-external
+      port: 5432
+      user: postgres
+      password: postgres
+      name: user_service
+      ssl_mode: disable
+
+    redis:
+      host: redis-external
+      port: 6379
+      password: redis123
+
+    logger:
+      level: info
+      format: json
+  DB_URL: 'postgresql://postgres:postgres@postgres-external:5432/user_service?sslmode=disable'

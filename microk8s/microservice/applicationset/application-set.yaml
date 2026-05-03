@@ -12,6 +12,7 @@ spec:
                 - app: user-fe
                 - app: user-be
                 - app: user-bff
+                - app: user-backend
           - list:
               elements:
                 - env: dev

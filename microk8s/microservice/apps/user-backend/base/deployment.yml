@@ -1,0 +1,149 @@
+# Kubernetes Documentation : https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-backend-deployment
+  labels:
+    app: user-backend-deployment-label
+spec:
+  replicas: 1
+  # The revisionHistoryLimit field in your Deployment manifest controls how many old ReplicaSets Kubernetes should retain for rollback purposes.
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: user-backend-deployment-label
+  template:
+    metadata:
+      labels:
+        app: user-backend-deployment-label
+    spec:
+      # Init containers run before app containers
+      # Ensures database migrations complete before app starts
+      initContainers:
+        - name: db-migrate
+          image: deployment-image # Same image as the app
+          imagePullPolicy: IfNotPresent
+          command:
+            - /app/migrate
+            - -path=/app/db/migrations
+            - -database=$(DATABASE_URL)
+            - up
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: user-backend-configmap
+                  key: DB_URL
+                # secretKeyRef:
+                # name: go-api-db-secret
+                # key: db-url
+          # Optional: Add readiness probe for init container
+          startupProbe:
+            exec:
+              command:
+                - /app/migrate
+                - -path=/app/db/migrations
+                - -database=$(DATABASE_URL)
+                - version
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 30
+            failureThreshold: 6
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      # hostNetwork: true # Use host networking for the pod to connect postgres and redis
+      # dnsPolicy: ClusterFirstWithHostNet
+
+      # Main application container
+      containers:
+        - name: user-backend-deployment
+          image: deployment-image
+          imagePullPolicy: Always
+          ports:
+            - name: grpc
+              containerPort: 5000
+              protocol: TCP
+            - name: health
+              containerPort: 5001
+              protocol: TCP
+          # envFrom:
+          #   - secretRef:
+          #       name: user-backend-secret
+          envFrom:
+            - configMapRef:
+              name: user-backend-configmap
+          resources:
+            requests:
+              cpu: '512m' # Minimum CPU requested (200 milicores)
+              memory: '1Gi' # Minimum memory requested (256 MiB)
+            limits:
+              cpu: '4' # Maximum CPU allowed (1024 milicores = 1 CPU)
+              memory: '2Gi' # Maximum memory allowed (2 GB)
+          env:
+            - name: GOAPI_CONFIG
+              value: /etc/config/config.yml
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: user-backend-configmap
+                  key: DB_URL
+
+          volumeMounts:
+            - name: config
+              mountPath: /etc/config
+              readOnly: true
+
+          # Startup probe: checks if server has started successfully
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 5001
+            failureThreshold: 30
+            periodSeconds: 10
+          # Readiness probe: checks if server can handle requests
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 5001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          # Liveness probe: restarts container if it becomes unhealthy
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 5001
+            initialDelaySeconds: 15
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          # Security context
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
+      # Pod affinity and disruption budgets for high availability
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - user-backend-deployment
+                topologyKey: kubernetes.io/hostname
