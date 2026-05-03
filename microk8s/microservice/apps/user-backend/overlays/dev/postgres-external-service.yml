@@ -5,7 +5,6 @@ metadata:
   name: postgres-external
   namespace: dev
 spec:
-  clusterIP: None
   ports:
     - protocol: TCP
       port: 5432

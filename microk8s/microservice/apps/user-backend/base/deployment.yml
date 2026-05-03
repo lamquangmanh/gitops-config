@@ -22,7 +22,7 @@ spec:
       initContainers:
         - name: db-migrate
           image: deployment-image # Same image as the app
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           command:
             - /app/migrate
             - -path=/app/db/migrations
@@ -76,7 +76,7 @@ spec:
           #       name: user-backend-secret
           envFrom:
             - configMapRef:
-              name: user-backend-configmap
+                name: user-backend-configmap
           resources:
             requests:
               cpu: '512m' # Minimum CPU requested (200 milicores)
@@ -147,3 +147,8 @@ spec:
                       values:
                         - user-backend-deployment
                 topologyKey: kubernetes.io/hostname
+
+      volumes:
+        - name: config
+          configMap:
+            name: user-backend-configmap
