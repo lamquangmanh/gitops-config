@@ -38,17 +38,17 @@ spec:
                 # name: go-api-db-secret
                 # key: db-url
           # Optional: Add readiness probe for init container
-          startupProbe:
-            exec:
-              command:
-                - /app/migrate
-                - -path=/app/db/migrations
-                - -database=$(DATABASE_URL)
-                - version
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            timeoutSeconds: 30
-            failureThreshold: 6
+          # startupProbe:
+          #   exec:
+          #     command:
+          #       - /app/migrate
+          #       - -path=/app/db/migrations
+          #       - -database=$(DATABASE_URL)
+          #       - version
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          #   timeoutSeconds: 30
+          #   failureThreshold: 6
           resources:
             requests:
               cpu: 100m
