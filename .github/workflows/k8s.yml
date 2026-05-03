@@ -12,6 +12,10 @@ on:
         description: "Docker repository name"
         required: true
         type: string
+    secrets:
+      GIT_PAT:
+        required: true
+        description: "GitHub Personal Access Token for accessing gitops-config repo"
 
 jobs:
   build:
