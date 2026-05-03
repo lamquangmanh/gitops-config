@@ -9,7 +9,7 @@ on:
         required: true
         type: string
       repository_path:
-        description: 'Docker repository name'
+        description: "Docker repository name"
         required: true
         type: string
 
@@ -29,7 +29,7 @@ jobs:
 
     steps:
       # Clones the repository
-      # That repository contains all kuztomize config, we need to clone it and ArgoCd will be execute it
+      # That repository contains all kustomize config, we need to clone it and ArgoCd will be execute it
       - name: Checkout Config Repo
         uses: actions/checkout@v4
         with:

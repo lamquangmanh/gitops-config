@@ -1,0 +1,98 @@
+name: Reusable Go CI for ArgoCD and Kubernetes
+
+# This workflow is designed to be called from other workflows via `uses:`.
+on:
+  workflow_call:
+    # Input parameters allow each caller to customize CI behavior per environment/repository.
+    inputs:
+      environment:
+        description: Deployment environment (dev, staging, prod)
+        required: true
+        type: string
+      go_version:
+        description: Go version to use
+        required: false
+        default: "1.25.x"
+        type: string
+      working_directory:
+        description: Working directory of the Go project
+        required: false
+        default: "."
+        type: string
+      build_command:
+        description: Build command
+        required: false
+        default: "go build -o bin/grpc ./cmd/grpc"
+        type: string
+      test_command:
+        description: Test command
+        required: false
+        default: "go test ./..."
+        type: string
+
+jobs:
+  ci-process:
+    name: CI process
+    # Run CI on GitHub-hosted Linux runner.
+    runs-on: ubuntu-latest
+    # Least-privilege permissions for CI checks.
+    permissions:
+      contents: read
+      packages: read
+
+    # Cancel older in-progress runs for the same ref to save CI time/cost.
+    concurrency:
+      group: ${{ github.workflow }}-go-ci-process-${{ github.ref }}
+      cancel-in-progress: true
+
+    # Attach this run to the target GitHub Environment (dev/staging/prod).
+    environment: ${{ inputs.environment }}
+
+    # Execute all shell commands from the caller-provided working directory.
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+
+    steps:
+      # Fetch repository source code for CI checks.
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          # Shallow clone improves checkout performance.
+          fetch-depth: 1
+
+      # Install requested Go toolchain and enable module/build cache.
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go_version }}
+          cache: true
+          # Cache key is derived from go.sum in the selected working directory.
+          cache-dependency-path: |
+            ${{ inputs.working_directory }}/go.sum
+
+      # Download modules early to fail fast on dependency issues.
+      - name: Download dependencies
+        run: go mod download
+
+      # Enforce gofmt formatting to keep code style consistent.
+      - name: Verify formatting
+        run: |
+          UNFORMATTED=$(gofmt -l .)
+          if [ -n "$UNFORMATTED" ]; then
+            echo "These files are not gofmt formatted:"
+            echo "$UNFORMATTED"
+            exit 1
+          fi
+
+      # Static analysis to catch suspicious constructs.
+      - name: Vet
+        run: go vet ./...
+
+      # Run test suite (customizable by caller).
+      - name: Test
+        run: ${{ inputs.test_command }}
+
+      # Build application artifacts (customizable by caller).
+      - name: Build
+        run: ${{ inputs.build_command }}
