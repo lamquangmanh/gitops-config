@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - configmap.yaml
-  - postgres-external-service.yml
-  - redis-external-service.yml
-  - ./../../base
+- configmap.yaml
+- postgres-external-service.yml
+- redis-external-service.yml
+- ./../../base
 
 # If you have any patches to apply to the base resources, you can specify them here.
 # patches:
@@ -15,6 +15,6 @@ resources:
 #       kind: Deployment
 
 images:
-  - name: deployment-image
-    newName: quangmanhlam/user-backend-dev
-    newTag: 1f2b6230226fbfc2d3670ad243bc2101beffcb40
+- name: deployment-image
+  newName: quangmanhlam/user-backend-dev
+  newTag: 73ea066a475733c4feeb8e4be13f4a853014fbcb
