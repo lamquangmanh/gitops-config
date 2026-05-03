@@ -17,4 +17,4 @@ resources:
 images:
 - name: deployment-image
   newName: quangmanhlam/user-backend-dev
-  newTag: 73ea066a475733c4feeb8e4be13f4a853014fbcb
+  newTag: 7508a34e012c5ba98d82b7aee4b178354f93487f
