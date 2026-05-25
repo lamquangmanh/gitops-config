@@ -9,8 +9,6 @@ data:
     app:
       name: user-backend
       environment: development
-      jwt_secret: zaqwsxcdeRFVvFrTgb
-      jwt_expiration: 86400 # 24 hours in seconds
 
     grpc:
       port: 5000
@@ -34,4 +32,8 @@ data:
     logger:
       level: info
       format: json
+
+    jwt:
+      secret: zaqwsxcdeRFVvFrTgb
+      expiry_seconds: 86400
   DB_URL: 'postgresql://postgres:postgres@postgres-external:5432/user_service?sslmode=disable'
